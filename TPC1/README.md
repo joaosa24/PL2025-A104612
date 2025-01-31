@@ -6,7 +6,7 @@
 
 ## Resumo
 
-- Criação do repositório `PL2025::A104612`.  
+- Criação do repositório `PL::A104612`.  
 - Configuração da pasta `TPC1` com ficheiros iniciais.  
 - Estudo da sintaxe Markdown para documentação.
 
