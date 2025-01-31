@@ -1,7 +1,7 @@
 # Repositório PL2025::A104612
 
 **Autor:** João Sá, A104612  
-![Foto](assets/foto.jpeg)
+![Foto](assets/new.jpg)
 
 ## Sobre este Repositório
 
