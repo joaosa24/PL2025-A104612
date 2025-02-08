@@ -1,6 +1,7 @@
-# Repositório PL2025::A104612
+# Processamento de Linguagens 2025
 
-**Autor:** João Sá, A104612  
+**Autor:** João Sá 
+**Nº**: A104612  
 ![Foto](assets/new.jpg)
 
 ## Sobre este Repositório
