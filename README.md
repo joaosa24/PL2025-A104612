@@ -2,7 +2,7 @@
 
 **Autor:** João Sá 
 **Nº**: A104612  
-![Foto](assets/new.jpg)
+![foto](https://avatars.githubusercontent.com/u/116807604?v=4)
 
 ## Sobre este Repositório
 
