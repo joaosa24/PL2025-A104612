@@ -4,7 +4,8 @@
 - **Nome:** João Pedro Ribeiro de Sá
 - **Nº:** A104612
 - **Foto:**
-![Foto](https://avatars.githubusercontent.com/u/116807604?v=4)
+
+   ![Foto](https://avatars.githubusercontent.com/u/116807604?v=4)
 
 ## Resumo
 Este programa implementa um somador, que opera com base em "interruptores" ON/OFF no input desejado. Este analisa um texto (pode ser alterado pelo utilizador) e soma as sequências de números, quando se encontra com o estado "ON". O programa desenvolvido lida tanto com números positivos como negativos. Se o caracter '=' aparecer, o resultado atual da soma é apresentado. Quando o texto acaba, é apresentado o resultado final.
