@@ -4,6 +4,7 @@
 - **Nome:** João Pedro Ribeiro de Sá
 - **Nº:** A104612
 - **Foto:**
+  
 ![Foto](https://avatars.githubusercontent.com/u/116807604?v=4)
 
 ## Resumo
