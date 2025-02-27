@@ -1,0 +1,37 @@
+Resultados:
+
+Conversão de Header:
+Input: ###### Exemplo de Cabeçalho
+Output: <h6>Exemplo de Cabeçalho</h6>
+-----------------------------
+
+Conversão de Itálico:
+Input: *Exemplo de texto em itálico*
+Output: <i>Exemplo de texto em itálico</i>
+-----------------------------
+
+Conversão de Bold:
+Input: **Exemplo de texto em negrito**
+Output: <b>Exemplo de texto em negrito</b>
+-----------------------------
+
+Conversão de Link:
+Input: Como pode ser consultado em [página da UC](http://www.uc.pt)
+Output: Como pode ser consultado em <a href="http://www.uc.pt">página da UC</a>
+-----------------------------
+
+Conversão de Imagem:
+Input: ![imagem dum coelho](http://www.coellho.com)
+Output: Como se vê na imagem seguinte: <img src="http://www.coellho.com" alt="imagem dum coelho">
+-----------------------------
+
+Conversão de Lista:
+Input: 1. Primeiro item
+2. Segundo item
+3. Terceiro item
+
+Output: <ol>
+<li>Primeiro item</li>
+<li>Segundo item</li>
+<li>Terceiro item</li>
+</ol>
