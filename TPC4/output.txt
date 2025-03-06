@@ -1,0 +1,29 @@
+Tokens Reconhecidos:
+------------------------------
+Valor: select     | Tipo: KEYWORD
+Valor: ?nome      | Tipo: VAR
+Valor: ?desc      | Tipo: VAR
+Valor: where      | Tipo: KEYWORD
+Valor: {          | Tipo: SYMBOL
+Valor: ?s         | Tipo: VAR
+Valor: dbo:MusicalArtist | Tipo: URI
+Valor: .          | Tipo: SYMBOL
+Valor: ?s         | Tipo: VAR
+Valor: foaf:name  | Tipo: URI
+Valor: "Chuck Berry"@en | Tipo: STRING
+Valor: .          | Tipo: SYMBOL
+Valor: ?w         | Tipo: VAR
+Valor: dbo:artist | Tipo: URI
+Valor: ?s         | Tipo: VAR
+Valor: .          | Tipo: SYMBOL
+Valor: ?w         | Tipo: VAR
+Valor: foaf:name  | Tipo: URI
+Valor: ?nome      | Tipo: VAR
+Valor: .          | Tipo: SYMBOL
+Valor: ?w         | Tipo: VAR
+Valor: dbo:abstract | Tipo: URI
+Valor: ?desc      | Tipo: VAR
+Valor: }          | Tipo: SYMBOL
+Valor: 1000       | Tipo: NUMBER
+------------------------------
+Total de Tokens: 25
