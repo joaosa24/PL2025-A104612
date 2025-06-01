@@ -1,0 +1,18 @@
+program ArrayOutOfBounds;
+
+var
+  numeros: array[1..5] of Integer;
+  i: Integer;
+  texto: String;
+  a: char;
+
+begin
+  texto := 'Ola';
+  a := texto[a];
+  
+  for i := 1 to 5 do
+    numeros[i] := i * 10;
+
+  writeln('Valor fora do array: ', numeros[6]);
+  writeln('Valor fora da string: ', texto[5])
+end.

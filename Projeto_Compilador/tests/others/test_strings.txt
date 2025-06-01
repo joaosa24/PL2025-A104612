@@ -1,0 +1,73 @@
+program TesteStrings;
+var
+    nome: string;
+    frase: string;
+    i, tamanho: integer;
+    caractere: char;
+
+begin
+    writeln('=== Teste de Strings ===');
+    
+    { Teste 1: Atribuição e exibição básica }
+    writeln('Teste 1 - Atribuição básica:');
+    nome := 'Pascal';
+    frase := 'Linguagem de programacao';
+    
+    write('Nome: '); writeln(nome);
+    write('Frase: '); writeln(frase);
+    writeln;
+    
+    { Teste 3: Comprimento da string }
+    writeln('Teste 3 - Comprimento:');
+    tamanho := length(nome);
+    write('Tamanho do nome: '); writeln(tamanho);
+    writeln;
+    
+    { Teste 4: Percorrer string caractere por caractere }
+    writeln('Teste 4 - Percorrer string:');
+    write('Nome letra por letra: ');
+    for i := 1 to length(nome) do
+    begin
+        write(nome[i]);
+        if i < length(nome) then write('-')
+    end;
+    writeln;
+    writeln;
+    
+    { Teste 5: Comparação de caracteres }
+    writeln('Teste 5 - Comparação de caracteres:');
+    caractere := nome[1];
+    if caractere = 'P' then
+        writeln('A primeira letra é P!')
+    else
+        writeln('A primeira letra não é P');
+        
+    if nome[2] = 'a' then
+        writeln('A segunda letra é a!')
+    else
+        writeln('A segunda letra não é a');
+    writeln;
+    
+    { Teste 6: Modificação de caracteres (se suportado) }
+    writeln('Teste 6 - Busca de caractere:');
+    for i := 1 to length(frase) do
+    begin
+        if frase[i] = 'a' then
+        begin
+            write('Encontrado ''a'' na posição '); writeln(i)
+        end
+    end;
+    writeln;
+    
+    { Teste 7: Contagem de caracteres específicos }
+    writeln('Teste 7 - Contagem de caracteres:');
+    tamanho := 0;
+    for i := 1 to length(frase) do
+    begin
+        if frase[i] = 'a' then
+            tamanho := tamanho + 1
+    end;
+    write('Número de ''a'' na frase: '); writeln(tamanho);
+    
+    writeln('=== Fim dos testes de strings ===');
+end.

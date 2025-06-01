@@ -1,0 +1,17 @@
+program wrongTypeAssignment;
+var
+  i: integer;
+  r: real;
+  c: char;
+  b: boolean;
+  s: string;
+  numero: array [1..5] of integer;
+begin
+  i := 42;
+  r := 'a';
+  c := 'A';
+  b := true;
+  s := 'Hello';
+
+  writeln(1);
+end.

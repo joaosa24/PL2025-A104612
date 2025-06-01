@@ -1,0 +1,51 @@
+=== RESUMO BÁSICO DE PASCAL ===
+
+1. Estrutura do Programa
+program -> inicia um programa Pascal e define o seu nome
+uses -> importa bibliotecas (opcional)
+var -> inicia a secção de declaração de variáveis
+const -> declara constantes
+type -> declara tipos personalizados
+begin -> inicia um bloco de comandos
+end -> finaliza um bloco de comandos
+end. -> finaliza o programa
+
+2. Controlo de Fluxo
+if -> inicia uma estrutura condicional
+then -> delimita o comando a executar se a condição for verdadeira
+else -> delimita o comando a executar se a condição for falsa
+case -> inicia uma estrutura de seleção múltipla (switch)
+while -> inicia um ciclo de repetição com condição no início
+do -> indica o comando a repetir no ciclo while
+for -> inicia um ciclo de repetição com contador
+to -> define limite superior no for (incremento)
+downto -> define limite inferior no for (decremento)
+repeat -> inicia um ciclo de repetição com condição no final
+until -> indica condição para sair do ciclo repeat
+
+3. Declaração e Tipos
+procedure -> declara um procedimento (função sem retorno)
+function -> declara uma função (com retorno)
+array -> define um vetor ou matriz
+record -> define um registo (estrutura com campos)
+
+4. Operadores
+:= -> operador de atribuição
+= -> operador de comparação (igualdade)
+<> -> operador de desigualdade
+> -> operador maior que
+< -> operador menor que
+>= -> operador maior ou igual
+<= -> operador menor ou igual
+
++ -> soma
+- -> subtração
+* -> multiplicação
+/ -> divisão real
+div -> divisão inteira
+mod -> resto da divisão inteira
+
+and -> operador lógico E
+or -> operador lógico OU
+not -> operador lógico NÃO
+

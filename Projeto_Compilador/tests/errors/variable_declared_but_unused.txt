@@ -1,0 +1,10 @@
+program VariableDeclaredButUnused;
+
+var
+  i, d: Integer;
+
+begin
+  i := 5 * 10;
+
+  writeln('Valor: ', i);
+end.

@@ -1,0 +1,99 @@
+Programa : PROGRAM ID ';' Bloco '.'
+
+Bloco : VarSec Exec
+
+VarSec : VAR ListaDeclaracaoVars
+       | empty
+
+ListaDeclaracaoVars : DeclVar ListaDeclaracaoVars
+                    | empty
+
+DeclVar : ListaVariaveis ':' Tipo ';'
+
+Variavel : ID '[' Expr ']'
+         | ID
+
+ListaVariaveis : Variavel ListaVariaveisTail
+
+ListaVariaveisTail : ',' Variavel ListaVariaveisTail
+                   | empty
+
+Tipo : INTEGER
+     | REAL
+     | CHAR_TYPE
+     | BOOLEAN
+     | STRING_TYPE
+     | ARRAY '[' NUMBER '..' NUMBER ']' OF Tipo
+
+Exec : BEGIN ListaInstrucao END
+
+ListaInstrucao : Instrucao ';' ListaInstrucao
+               | Instrucao
+               | empty
+
+Instrucao : Exec
+          | IF Expr THEN Instrucao
+          | IF Expr THEN Instrucao ELSE Instrucao
+          | Loop
+          | Atr
+          | WRITE '(' ListaExpr ')'
+          | WRITELN '(' ListaExpr ')'
+          | WRITELN
+          | READ '(' ListaVariaveis ')'
+          | READLN '(' ListaVariaveis ')'
+
+Loop : WHILE Expr DO Instrucao
+     | FOR ID ':=' Expr TO Expr DO Instrucao
+     | FOR ID ':=' Expr DOWNTO Expr DO Instrucao
+
+Atr : ID ':=' Expr
+    | ID '[' Expr ']' ':=' Expr
+
+Expr : Expr OR TermoAnd
+     | TermoAnd
+
+ListaExpr : Expr ListaExprTail
+
+ListaExprTail : ',' Expr ListaExprTail
+              | empty
+
+TermoAnd : TermoAnd AND TermoIgualdade
+         | TermoIgualdade
+
+TermoIgualdade : TermoIgualdade '=' TermoRelacional
+               | TermoIgualdade '<>' TermoRelacional
+               | TermoRelacional
+
+TermoRelacional : TermoRelacional '>' TermoAditivo
+                | TermoRelacional '<' TermoAditivo
+                | TermoRelacional '>=' TermoAditivo
+                | TermoRelacional '<=' TermoAditivo
+                | TermoAditivo
+
+TermoAditivo : TermoAditivo '+' TermoMultiplicativo
+             | TermoAditivo '-' TermoMultiplicativo
+             | TermoMultiplicativo
+
+TermoMultiplicativo : TermoMultiplicativo '*' Fator
+                    | TermoMultiplicativo '/' Fator
+                    | TermoMultiplicativo MOD Fator
+                    | Fator
+
+Fator : ID
+      | NUMBER
+      | STRING
+      | TRUE
+      | FALSE
+      | '(' Expr ')'
+      | ID '[' Expr ']'
+      | ID '.' ID
+      | ID '(' ID ')'
+      | CHAR
+
+ListaArgumentos : Expr ListaArgumentosTail
+                | empty
+
+ListaArgumentosTail : ',' Expr ListaArgumentosTail
+                    | empty
+
+empty :

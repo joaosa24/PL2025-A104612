@@ -1,0 +1,217 @@
+pushn 9
+start
+pushs "=== Teste de Input/Output ==="
+writes
+writeln
+writeln
+pushs "Teste 1 - Leitura de inteiro:"
+writes
+writeln
+pushs "Digite um número inteiro: "
+writes
+read
+atoi
+storeg 0
+pushs "Você digitou: "
+writes
+pushg 0
+writei
+writeln
+pushs "O dobro é: "
+writes
+pushg 0
+pushi 2
+mul
+writei
+writeln
+writeln
+pushs "Teste 2 - Leitura de string:"
+writes
+writeln
+pushs "Digite seu nome: "
+writes
+read
+storeg 1
+pushs "Olá, "
+writes
+pushg 1
+writes
+pushi 33
+writechr
+writeln
+writeln
+pushs "Teste 3 - Múltiplas leituras:"
+writes
+writeln
+pushs "Digite sua idade: "
+writes
+read
+atoi
+storeg 2
+pushg 2
+pushi 18
+supeq
+jz L1
+pushs "Você é maior de idade"
+writes
+writeln
+jump L2
+L1:
+pushs "Você é menor de idade"
+writes
+writeln
+L2:
+writeln
+pushs "Teste 4 - Leitura para array:"
+writes
+writeln
+pushs "Digite 3 números:"
+writes
+writeln
+pushi 1
+storeg 8
+L3:
+pushi 3
+pushg 8
+supeq
+jz L4
+pushs "Número "
+writes
+pushg 8
+writei
+pushs ": "
+writes
+pushgp
+pushi 5
+padd
+pushg 8
+pushi 1
+sub
+read
+atoi
+storen
+pushg 8
+pushi 1
+add
+storeg 8
+jump L3
+L4:
+pushs "Você digitou: "
+writes
+pushi 1
+storeg 8
+L6:
+pushi 3
+pushg 8
+supeq
+jz L7
+pushgp
+pushi 5
+padd
+pushg 8
+pushi 1
+sub
+loadn
+writei
+pushg 8
+pushi 3
+inf
+jz L5
+pushs ", "
+writes
+L5:
+pushg 8
+pushi 1
+add
+storeg 8
+jump L6
+L7:
+writeln
+pushs "A soma é: "
+writes
+pushgp
+pushi 5
+padd
+pushi 1
+pushi 1
+sub
+loadn
+pushgp
+pushi 5
+padd
+pushi 2
+pushi 1
+sub
+loadn
+add
+pushgp
+pushi 5
+padd
+pushi 3
+pushi 1
+sub
+loadn
+add
+storeg 0
+pushg 0
+writei
+writeln
+writeln
+pushs "Teste 6 - Menu simples:"
+writes
+writeln
+pushs "Escolha uma opção:"
+writes
+writeln
+pushs "1 - Opção A"
+writes
+writeln
+pushs "2 - Opção B"
+writes
+writeln
+pushs "3 - Sair"
+writes
+writeln
+pushs "Sua escolha: "
+writes
+read
+atoi
+storeg 0
+pushg 0
+pushi 1
+equal
+jz L12
+pushs "Você escolheu a Opção A"
+writes
+writeln
+jump L13
+L12:
+pushg 0
+pushi 2
+equal
+jz L10
+pushs "Você escolheu a Opção B"
+writes
+writeln
+jump L11
+L10:
+pushg 0
+pushi 3
+equal
+jz L8
+pushs "Saindo..."
+writes
+writeln
+jump L9
+L8:
+pushs "Opção inválida!"
+writes
+writeln
+L9:
+L11:
+L13:
+writeln
+pushs "=== Fim dos testes de I/O ==="
+writes
+writeln
+stop

@@ -1,0 +1,83 @@
+program TesteIO;
+var
+    numero: integer;
+    nome: string;
+    idade: integer;
+    nota: real;
+    continuar: char;
+    numeros: array[1..3] of integer;
+    i: integer;
+
+begin
+    writeln('=== Teste de Input/Output ===');
+    writeln;
+    
+    { Teste 1: Leitura de inteiro }
+    writeln('Teste 1 - Leitura de inteiro:');
+    write('Digite um número inteiro: ');
+    read(numero);
+    write('Você digitou: '); writeln(numero);
+    write('O dobro é: '); writeln(numero * 2);
+    writeln;
+    
+    { Teste 2: Leitura de string }
+    writeln('Teste 2 - Leitura de string:');
+    write('Digite seu nome: ');
+    readln(nome);
+    write('Olá, '); write(nome); writeln('!');
+    writeln;
+    
+    { Teste 3: Múltiplas leituras }
+    writeln('Teste 3 - Múltiplas leituras:');
+    write('Digite sua idade: ');
+    readln(idade);
+    
+    if idade >= 18 then
+        writeln('Você é maior de idade')
+    else
+        writeln('Você é menor de idade');
+    writeln;
+    
+    { Teste 4: Leitura em array }
+    writeln('Teste 4 - Leitura para array:');
+    writeln('Digite 3 números:');
+    for i := 1 to 3 do
+    begin
+        write('Número '); write(i); write(': ');
+        read(numeros[i])
+    end;
+    
+    write('Você digitou: ');
+    for i := 1 to 3 do
+    begin
+        write(numeros[i]);
+        if i < 3 then write(', ')
+    end;
+    writeln;
+    
+    write('A soma é: '); 
+    numero := numeros[1] + numeros[2] + numeros[3];
+    writeln(numero);
+    writeln;
+    
+    { Teste 6: Leitura com validação }
+    writeln('Teste 6 - Menu simples:');
+    writeln('Escolha uma opção:');
+    writeln('1 - Opção A');
+    writeln('2 - Opção B');
+    writeln('3 - Sair');
+    write('Sua escolha: ');
+    read(numero);
+    
+    if numero = 1 then
+        writeln('Você escolheu a Opção A')
+    else if numero = 2 then
+        writeln('Você escolheu a Opção B')
+    else if numero = 3 then
+        writeln('Saindo...')
+    else
+        writeln('Opção inválida!');
+    
+    writeln;
+    writeln('=== Fim dos testes de I/O ===');
+end.

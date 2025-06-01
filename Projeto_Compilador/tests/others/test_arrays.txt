@@ -1,0 +1,75 @@
+program TesteArrays;
+var
+    numeros: array[1..5] of integer;
+    letras: array[0..3] of char;
+    i: integer;
+    soma: integer;
+
+begin
+    writeln('=== Teste de Arrays ===');
+    
+    { Teste 1: Atribuição e leitura de arrays de inteiros }
+    writeln('Teste 1 - Atribuição manual:');
+    numeros[1] := 10;
+    numeros[2] := 20;
+    numeros[3] := 30;
+    numeros[4] := 40;
+    numeros[5] := 50;
+    
+    write('Array numeros: ');
+    for i := 1 to 5 do
+    begin
+        write(numeros[i]);
+        if i < 5 then write(', ')
+    end;
+    writeln;
+    
+    { Teste 2: Soma dos elementos }
+    soma := 0;
+    for i := 1 to 5 do
+        soma := soma + numeros[i];
+    write('Soma total: '); writeln(soma);
+    writeln;
+    
+    { Teste 3: Array de caracteres }
+    writeln('Teste 2 - Array de caracteres:');
+    letras[0] := 'A';
+    letras[1] := 'B';
+    letras[2] := 'C';
+    letras[3] := 'D';
+    
+    write('Array letras: ');
+    for i := 0 to 3 do
+        write(letras[i]);
+    writeln;
+    writeln;
+    
+    { Teste 4: Modificação através de loop }
+    writeln('Teste 3 - Modificação via loop:');
+    for i := 1 to 5 do
+        numeros[i] := numeros[i] * 2;
+        
+    write('Array após multiplicar por 2: ');
+    for i := 1 to 5 do
+    begin
+        write(numeros[i]);
+        if i < 5 then write(', ')
+    end;
+    writeln;
+    
+    { Teste 5: Busca no array }
+    writeln('Teste 4 - Busca de elemento:');
+    for i := 1 to 5 do
+    begin
+        if numeros[i] = 60 then
+        begin
+            write('Encontrado 60 na posição '); writeln(i)
+        end
+    end;
+
+    { Teste 6: Atribuição entre arrays }
+    numeros[1] := numeros[2];
+    writeln(numeros[1]);
+    
+    writeln('=== Fim dos testes de arrays ===');
+end.

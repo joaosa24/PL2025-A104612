@@ -1,0 +1,16 @@
+program undeclaredVariable;
+var
+  r: real;
+  c: char;
+  b: boolean;
+  s: string;
+  numero: array [1..5] of integer;
+begin
+  i := 42;
+  r := 3.14;
+  c := 'A';
+  b := true;
+  s := 'Hello';
+
+  writeln(1);
+end.

@@ -1,0 +1,27 @@
+program type_comparisons;
+var
+  i: integer;
+  r: real;
+  c: char;
+  b: boolean;
+  s: string;
+  arr: array[1..5] of integer;
+begin
+  if i > c then writeln('error');      {integer vs char}
+  if r = s then writeln('error');      {real vs string}
+  if b <= r then writeln('error');     {boolean vs real}
+  if b >= r then writeln('error');     {boolean vs real}
+  if s <> c then writeln('error');     {string vs char}
+  
+  if i and b then writeln('error');    
+  if s or b then writeln('error');   
+
+  i := i + c;
+  i := i + r;  
+  
+  { Teste de indexes }
+  arr[b] := 1;                         
+  arr[s] := 2;                         
+  
+  writeln('End of tests');
+end.

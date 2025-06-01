@@ -1,0 +1,45 @@
+pushn 7
+start
+pushi 0
+storeg 6
+pushs "Introduza 5 números inteiros:"
+writes
+writeln
+pushi 1
+storeg 5
+L1:
+pushi 5
+pushg 5
+supeq
+jz L2
+pushgp
+pushi 0
+padd
+pushg 5
+pushi 1
+sub
+read
+atoi
+storen
+pushg 6
+pushgp
+pushi 0
+padd
+pushg 5
+pushi 1
+sub
+loadn
+add
+storeg 6
+pushg 5
+pushi 1
+add
+storeg 5
+jump L1
+L2:
+pushs "A soma dos números é: "
+writes
+pushg 6
+writei
+writeln
+stop

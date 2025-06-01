@@ -1,0 +1,26 @@
+program test_if;
+var
+    a : integer;
+    b : real;
+    c : string;
+begin
+    a := 10;
+    b := 3.14;
+    c := 'hello';
+
+    { Tentando usar inteiro como condição }
+    if a then
+        writeln('Isso não deveria funcionar');
+
+    { Tentando usar real como condição }
+    if b then
+        writeln('Isso também não deveria funcionar');
+
+    { Tentando usar string como condição }
+    if c then
+        writeln('E isso também não deveria funcionar');
+
+    { A forma correta seria usar comparações que resultem em boolean }
+    if a > 5 then
+        writeln('Isso sim deveria funcionar');
+end.

@@ -1,0 +1,282 @@
+pushn 11
+start
+pushs "=== Teste de Arrays ==="
+writes
+writeln
+pushs "Teste 1 - Atribuição manual:"
+writes
+writeln
+pushgp
+pushi 0
+padd
+pushi 1
+pushi 1
+sub
+pushi 10
+storen
+pushgp
+pushi 0
+padd
+pushi 2
+pushi 1
+sub
+pushi 20
+storen
+pushgp
+pushi 0
+padd
+pushi 3
+pushi 1
+sub
+pushi 30
+storen
+pushgp
+pushi 0
+padd
+pushi 4
+pushi 1
+sub
+pushi 40
+storen
+pushgp
+pushi 0
+padd
+pushi 5
+pushi 1
+sub
+pushi 50
+storen
+pushs "Array numeros: "
+writes
+pushi 1
+storeg 9
+L2:
+pushi 5
+pushg 9
+supeq
+jz L3
+pushgp
+pushi 0
+padd
+pushg 9
+pushi 1
+sub
+loadn
+writei
+pushg 9
+pushi 5
+inf
+jz L1
+pushs ", "
+writes
+L1:
+pushg 9
+pushi 1
+add
+storeg 9
+jump L2
+L3:
+writeln
+pushi 0
+storeg 10
+pushi 1
+storeg 9
+L4:
+pushi 5
+pushg 9
+supeq
+jz L5
+pushg 10
+pushgp
+pushi 0
+padd
+pushg 9
+pushi 1
+sub
+loadn
+add
+storeg 10
+pushg 9
+pushi 1
+add
+storeg 9
+jump L4
+L5:
+pushs "Soma total: "
+writes
+pushg 10
+writei
+writeln
+writeln
+pushs "Teste 2 - Array de caracteres:"
+writes
+writeln
+pushgp
+pushi 5
+padd
+pushi 0
+pushi 65
+storen
+pushgp
+pushi 5
+padd
+pushi 1
+pushi 66
+storen
+pushgp
+pushi 5
+padd
+pushi 2
+pushi 67
+storen
+pushgp
+pushi 5
+padd
+pushi 3
+pushi 68
+storen
+pushs "Array letras: "
+writes
+pushi 0
+storeg 9
+L6:
+pushi 3
+pushg 9
+supeq
+jz L7
+pushgp
+pushi 5
+padd
+pushg 9
+loadn
+writechr
+pushg 9
+pushi 1
+add
+storeg 9
+jump L6
+L7:
+writeln
+writeln
+pushs "Teste 3 - Modificação via loop:"
+writes
+writeln
+pushi 1
+storeg 9
+L8:
+pushi 5
+pushg 9
+supeq
+jz L9
+pushgp
+pushi 0
+padd
+pushg 9
+pushi 1
+sub
+pushgp
+pushi 0
+padd
+pushg 9
+pushi 1
+sub
+loadn
+pushi 2
+mul
+storen
+pushg 9
+pushi 1
+add
+storeg 9
+jump L8
+L9:
+pushs "Array após multiplicar por 2: "
+writes
+pushi 1
+storeg 9
+L11:
+pushi 5
+pushg 9
+supeq
+jz L12
+pushgp
+pushi 0
+padd
+pushg 9
+pushi 1
+sub
+loadn
+writei
+pushg 9
+pushi 5
+inf
+jz L10
+pushs ", "
+writes
+L10:
+pushg 9
+pushi 1
+add
+storeg 9
+jump L11
+L12:
+writeln
+pushs "Teste 4 - Busca de elemento:"
+writes
+writeln
+pushi 1
+storeg 9
+L14:
+pushi 5
+pushg 9
+supeq
+jz L15
+pushgp
+pushi 0
+padd
+pushg 9
+pushi 1
+sub
+loadn
+pushi 60
+equal
+jz L13
+pushs "Encontrado 60 na posição "
+writes
+pushg 9
+writei
+writeln
+L13:
+pushg 9
+pushi 1
+add
+storeg 9
+jump L14
+L15:
+pushgp
+pushi 0
+padd
+pushi 1
+pushi 1
+sub
+pushgp
+pushi 0
+padd
+pushi 2
+pushi 1
+sub
+loadn
+storen
+pushgp
+pushi 0
+padd
+pushi 1
+pushi 1
+sub
+loadn
+writei
+writeln
+pushs "=== Fim dos testes de arrays ==="
+writes
+writeln
+stop

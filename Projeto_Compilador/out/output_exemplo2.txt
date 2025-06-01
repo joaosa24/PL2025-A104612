@@ -1,0 +1,52 @@
+pushn 4
+start
+pushs "Introduza o primeiro número: "
+writes
+read
+atoi
+storeg 0
+pushs "Introduza o segundo número: "
+writes
+read
+atoi
+storeg 1
+pushs "Introduza o terceiro número: "
+writes
+read
+atoi
+storeg 2
+pushg 0
+pushg 1
+sup
+jz L5
+pushg 0
+pushg 2
+sup
+jz L1
+pushg 0
+storeg 3
+jump L2
+L1:
+pushg 2
+storeg 3
+L2:
+jump L6
+L5:
+pushg 1
+pushg 2
+sup
+jz L3
+pushg 1
+storeg 3
+jump L4
+L3:
+pushg 2
+storeg 3
+L4:
+L6:
+pushs "O maior é: "
+writes
+pushg 3
+writei
+writeln
+stop

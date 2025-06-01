@@ -1,0 +1,29 @@
+program TesteForInvalido;
+var
+    i: integer;
+    texto: string;
+    flag: boolean;
+    valor: real;
+begin
+    texto := 'abc';
+    flag := true;
+    valor := 3.14;
+    
+    for i := 1 to 10 do
+        writeln(i);
+    
+    for i := 1 to texto do
+        writeln(i);
+    
+    for i := flag to 10 do
+        writeln(i);
+    
+    for i := 1 to valor do
+        writeln(i);
+
+    while texto do
+        writeln('Erro 1');
+    
+    while numero do
+        writeln('Erro 2')
+end.

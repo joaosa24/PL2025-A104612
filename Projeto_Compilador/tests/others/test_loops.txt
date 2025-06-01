@@ -1,0 +1,95 @@
+program TesteLoops;
+var
+    i, j, n, soma, fatorial: integer;
+    continuar: boolean;
+
+begin
+    writeln('=== Teste de Loops ===');
+    
+    { Teste 1: FOR básico crescente }
+    writeln('Teste 1 - FOR crescente:');
+    write('Contagem 1 a 5: ');
+    for i := 1 to 5 do
+    begin
+        write(i);
+        if i < 5 then write(', ')
+    end;
+    writeln;
+    writeln;
+    
+    { Teste 2: FOR decrescente }
+    writeln('Teste 2 - FOR decrescente:');
+    write('Contagem 5 a 1: ');
+    for i := 5 downto 1 do
+    begin
+        write(i);
+        if i > 1 then write(', ')
+    end;
+    writeln;
+    writeln;
+    
+    { Teste 3: FOR aninhado }
+    writeln('Teste 3 - FOR aninhado (tabuada):');
+    for i := 1 to 3 do
+    begin
+        write('Tabuada do '); write(i); writeln(':');
+        for j := 1 to 5 do
+        begin
+            write(i); write(' x '); write(j); write(' = '); writeln(i * j)
+        end;
+        writeln
+    end;
+    
+    { Teste 4: WHILE básico }
+    writeln('Teste 4 - WHILE básico:');
+    i := 1;
+    soma := 0;
+    writeln('Soma dos números de 1 a 10:');
+    while i <= 10 do
+    begin
+        soma := soma + i;
+        i := i + 1
+    end;
+    write('Resultado: '); writeln(soma);
+    writeln;
+    
+    { Teste 5: WHILE com condição complexa }
+    writeln('Teste 5 - WHILE com condição complexa:');
+    i := 2;
+    continuar := true;
+    writeln('Números pares até 10:');
+    while continuar and (i <= 10) do
+    begin
+        write(i); write(' ');
+        i := i + 2;
+        if i > 10 then
+            continuar := false
+    end;
+    writeln;
+    writeln;
+    
+    { Teste 6: Cálculo de fatorial }
+    writeln('Teste 6 - Fatorial usando WHILE:');
+    n := 5;
+    fatorial := 1;
+    i := 1;
+    while i <= n do
+    begin
+        fatorial := fatorial * i;
+        i := i + 1
+    end;
+    write('Fatorial de '); write(n); write(' = '); writeln(fatorial);
+    
+    { Teste 7: FOR com step negativo em expressões }
+    writeln('Teste 7 - FOR com limites calculados:');
+    n := 3;
+    write('Contagem de '); write(n*2); write(' até '); write(n); write(': ');
+    for i := n*2 downto n do
+    begin
+        write(i);
+        if i > n then write(', ')
+    end;
+    writeln;
+    
+    writeln('=== Fim dos testes de loops ===');
+end.

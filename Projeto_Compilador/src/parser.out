@@ -1,0 +1,3198 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Unused terminals:
+
+    CASE
+    CONST
+    DIVIDE
+    FUNCTION
+    NOT
+    PROCEDURE
+    REPEAT
+    UNTIL
+
+Grammar
+
+Rule 0     S' -> Programa
+Rule 1     Programa -> PROGRAM ID SEMICOLON Bloco DOT
+Rule 2     Bloco -> VarSec Exec
+Rule 3     VarSec -> VAR ListaDeclaracaoVars
+Rule 4     VarSec -> empty
+Rule 5     ListaDeclaracaoVars -> DeclVar ListaDeclaracaoVars
+Rule 6     ListaDeclaracaoVars -> empty
+Rule 7     DeclVar -> ListaVariaveis COLON Tipo SEMICOLON
+Rule 8     Variavel -> ID LBRACKET Expr RBRACKET
+Rule 9     Variavel -> ID
+Rule 10    ListaVariaveis -> Variavel ListaVariaveisTail
+Rule 11    ListaVariaveisTail -> COMMA Variavel ListaVariaveisTail
+Rule 12    ListaVariaveisTail -> empty
+Rule 13    Tipo -> INTEGER
+Rule 14    Tipo -> REAL
+Rule 15    Tipo -> CHAR_TYPE
+Rule 16    Tipo -> BOOLEAN
+Rule 17    Tipo -> STRING_TYPE
+Rule 18    Tipo -> ARRAY LBRACKET NUMBER DOTDOT NUMBER RBRACKET OF Tipo
+Rule 19    Exec -> BEGIN ListaInstrucao END
+Rule 20    ListaInstrucao -> Instrucao SEMICOLON ListaInstrucao
+Rule 21    ListaInstrucao -> Instrucao
+Rule 22    ListaInstrucao -> empty
+Rule 23    Instrucao -> IF Expr THEN Instrucao
+Rule 24    Instrucao -> IF Expr THEN Instrucao ELSE Instrucao
+Rule 25    Instrucao -> Loop
+Rule 26    Instrucao -> Atr
+Rule 27    Instrucao -> Exec
+Rule 28    Instrucao -> WRITE LPAREN ListaExpr RPAREN
+Rule 29    Instrucao -> WRITELN LPAREN ListaExpr RPAREN
+Rule 30    Instrucao -> WRITELN
+Rule 31    Instrucao -> READ LPAREN ListaVariaveis RPAREN
+Rule 32    Instrucao -> READLN LPAREN ListaVariaveis RPAREN
+Rule 33    Loop -> WHILE Expr DO Instrucao
+Rule 34    Loop -> FOR ID ASSIGN Expr TO Expr DO Instrucao
+Rule 35    Loop -> FOR ID ASSIGN Expr DOWNTO Expr DO Instrucao
+Rule 36    Atr -> ID ASSIGN Expr
+Rule 37    Atr -> ID LBRACKET Expr RBRACKET ASSIGN Expr
+Rule 38    Expr -> Expr OR TermoAnd
+Rule 39    Expr -> TermoAnd
+Rule 40    ListaExpr -> Expr ListaExprTail
+Rule 41    ListaExprTail -> COMMA Expr ListaExprTail
+Rule 42    ListaExprTail -> empty
+Rule 43    TermoAnd -> TermoAnd AND TermoIgualdade
+Rule 44    TermoAnd -> TermoIgualdade
+Rule 45    TermoIgualdade -> TermoIgualdade EQUAL TermoRelacional
+Rule 46    TermoIgualdade -> TermoIgualdade NOTEQUAL TermoRelacional
+Rule 47    TermoIgualdade -> TermoRelacional
+Rule 48    TermoRelacional -> TermoRelacional BIGGERTHEN TermoAditivo
+Rule 49    TermoRelacional -> TermoRelacional SMALLERTHEN TermoAditivo
+Rule 50    TermoRelacional -> TermoRelacional BIGOREQ TermoAditivo
+Rule 51    TermoRelacional -> TermoRelacional SMALOREQ TermoAditivo
+Rule 52    TermoRelacional -> TermoAditivo
+Rule 53    TermoAditivo -> TermoAditivo ADD TermoMultiplicativo
+Rule 54    TermoAditivo -> TermoAditivo SUB TermoMultiplicativo
+Rule 55    TermoAditivo -> TermoMultiplicativo
+Rule 56    TermoMultiplicativo -> TermoMultiplicativo MUL Fator
+Rule 57    TermoMultiplicativo -> TermoMultiplicativo DIV Fator
+Rule 58    TermoMultiplicativo -> TermoMultiplicativo MOD Fator
+Rule 59    TermoMultiplicativo -> Fator
+Rule 60    Fator -> ID
+Rule 61    Fator -> NUMBER
+Rule 62    Fator -> STRING
+Rule 63    Fator -> TRUE
+Rule 64    Fator -> FALSE
+Rule 65    Fator -> LPAREN Expr RPAREN
+Rule 66    Fator -> ID LBRACKET Expr RBRACKET
+Rule 67    Fator -> ID DOT ID
+Rule 68    Fator -> ID LPAREN ID RPAREN
+Rule 69    Fator -> CHAR
+Rule 70    ListaArgumentos -> Expr ListaArgumentosTail
+Rule 71    ListaArgumentos -> empty
+Rule 72    ListaArgumentosTail -> COMMA Expr ListaArgumentosTail
+Rule 73    ListaArgumentosTail -> empty
+Rule 74    empty -> <empty>
+
+Terminals, with rules where they appear
+
+ADD                  : 53
+AND                  : 43
+ARRAY                : 18
+ASSIGN               : 34 35 36 37
+BEGIN                : 19
+BIGGERTHEN           : 48
+BIGOREQ              : 50
+BOOLEAN              : 16
+CASE                 : 
+CHAR                 : 69
+CHAR_TYPE            : 15
+COLON                : 7
+COMMA                : 11 41 72
+CONST                : 
+DIV                  : 57
+DIVIDE               : 
+DO                   : 33 34 35
+DOT                  : 1 67
+DOTDOT               : 18
+DOWNTO               : 35
+ELSE                 : 24
+END                  : 19
+EQUAL                : 45
+FALSE                : 64
+FOR                  : 34 35
+FUNCTION             : 
+ID                   : 1 8 9 34 35 36 37 60 66 67 67 68 68
+IF                   : 23 24
+INTEGER              : 13
+LBRACKET             : 8 18 37 66
+LPAREN               : 28 29 31 32 65 68
+MOD                  : 58
+MUL                  : 56
+NOT                  : 
+NOTEQUAL             : 46
+NUMBER               : 18 18 61
+OF                   : 18
+OR                   : 38
+PROCEDURE            : 
+PROGRAM              : 1
+RBRACKET             : 8 18 37 66
+READ                 : 31
+READLN               : 32
+REAL                 : 14
+REPEAT               : 
+RPAREN               : 28 29 31 32 65 68
+SEMICOLON            : 1 7 20
+SMALLERTHEN          : 49
+SMALOREQ             : 51
+STRING               : 62
+STRING_TYPE          : 17
+SUB                  : 54
+THEN                 : 23 24
+TO                   : 34
+TRUE                 : 63
+UNTIL                : 
+VAR                  : 3
+WHILE                : 33
+WRITE                : 28
+WRITELN              : 29 30
+error                : 
+
+Nonterminals, with rules where they appear
+
+Atr                  : 26
+Bloco                : 1
+DeclVar              : 5
+Exec                 : 2 27
+Expr                 : 8 23 24 33 34 34 35 35 36 37 37 38 40 41 65 66 70 72
+Fator                : 56 57 58 59
+Instrucao            : 20 21 23 24 24 33 34 35
+ListaArgumentos      : 
+ListaArgumentosTail  : 70 72
+ListaDeclaracaoVars  : 3 5
+ListaExpr            : 28 29
+ListaExprTail        : 40 41
+ListaInstrucao       : 19 20
+ListaVariaveis       : 7 31 32
+ListaVariaveisTail   : 10 11
+Loop                 : 25
+Programa             : 0
+TermoAditivo         : 48 49 50 51 52 53 54
+TermoAnd             : 38 39 43
+TermoIgualdade       : 43 44 45 46
+TermoMultiplicativo  : 53 54 55 56 57 58
+TermoRelacional      : 45 46 47 48 49 50 51
+Tipo                 : 7 18
+VarSec               : 2
+Variavel             : 10 11
+empty                : 4 6 12 22 42 71 73
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . Programa
+    (1) Programa -> . PROGRAM ID SEMICOLON Bloco DOT
+
+    PROGRAM         shift and go to state 2
+
+    Programa                       shift and go to state 1
+
+state 1
+
+    (0) S' -> Programa .
+
+
+
+state 2
+
+    (1) Programa -> PROGRAM . ID SEMICOLON Bloco DOT
+
+    ID              shift and go to state 3
+
+
+state 3
+
+    (1) Programa -> PROGRAM ID . SEMICOLON Bloco DOT
+
+    SEMICOLON       shift and go to state 4
+
+
+state 4
+
+    (1) Programa -> PROGRAM ID SEMICOLON . Bloco DOT
+    (2) Bloco -> . VarSec Exec
+    (3) VarSec -> . VAR ListaDeclaracaoVars
+    (4) VarSec -> . empty
+    (74) empty -> .
+
+    VAR             shift and go to state 7
+    BEGIN           reduce using rule 74 (empty -> .)
+
+    Bloco                          shift and go to state 5
+    VarSec                         shift and go to state 6
+    empty                          shift and go to state 8
+
+state 5
+
+    (1) Programa -> PROGRAM ID SEMICOLON Bloco . DOT
+
+    DOT             shift and go to state 9
+
+
+state 6
+
+    (2) Bloco -> VarSec . Exec
+    (19) Exec -> . BEGIN ListaInstrucao END
+
+    BEGIN           shift and go to state 11
+
+    Exec                           shift and go to state 10
+
+state 7
+
+    (3) VarSec -> VAR . ListaDeclaracaoVars
+    (5) ListaDeclaracaoVars -> . DeclVar ListaDeclaracaoVars
+    (6) ListaDeclaracaoVars -> . empty
+    (7) DeclVar -> . ListaVariaveis COLON Tipo SEMICOLON
+    (74) empty -> .
+    (10) ListaVariaveis -> . Variavel ListaVariaveisTail
+    (8) Variavel -> . ID LBRACKET Expr RBRACKET
+    (9) Variavel -> . ID
+
+    BEGIN           reduce using rule 74 (empty -> .)
+    ID              shift and go to state 17
+
+    ListaDeclaracaoVars            shift and go to state 12
+    DeclVar                        shift and go to state 13
+    empty                          shift and go to state 14
+    ListaVariaveis                 shift and go to state 15
+    Variavel                       shift and go to state 16
+
+state 8
+
+    (4) VarSec -> empty .
+
+    BEGIN           reduce using rule 4 (VarSec -> empty .)
+
+
+state 9
+
+    (1) Programa -> PROGRAM ID SEMICOLON Bloco DOT .
+
+    $end            reduce using rule 1 (Programa -> PROGRAM ID SEMICOLON Bloco DOT .)
+
+
+state 10
+
+    (2) Bloco -> VarSec Exec .
+
+    DOT             reduce using rule 2 (Bloco -> VarSec Exec .)
+
+
+state 11
+
+    (19) Exec -> BEGIN . ListaInstrucao END
+    (20) ListaInstrucao -> . Instrucao SEMICOLON ListaInstrucao
+    (21) ListaInstrucao -> . Instrucao
+    (22) ListaInstrucao -> . empty
+    (23) Instrucao -> . IF Expr THEN Instrucao
+    (24) Instrucao -> . IF Expr THEN Instrucao ELSE Instrucao
+    (25) Instrucao -> . Loop
+    (26) Instrucao -> . Atr
+    (27) Instrucao -> . Exec
+    (28) Instrucao -> . WRITE LPAREN ListaExpr RPAREN
+    (29) Instrucao -> . WRITELN LPAREN ListaExpr RPAREN
+    (30) Instrucao -> . WRITELN
+    (31) Instrucao -> . READ LPAREN ListaVariaveis RPAREN
+    (32) Instrucao -> . READLN LPAREN ListaVariaveis RPAREN
+    (74) empty -> .
+    (33) Loop -> . WHILE Expr DO Instrucao
+    (34) Loop -> . FOR ID ASSIGN Expr TO Expr DO Instrucao
+    (35) Loop -> . FOR ID ASSIGN Expr DOWNTO Expr DO Instrucao
+    (36) Atr -> . ID ASSIGN Expr
+    (37) Atr -> . ID LBRACKET Expr RBRACKET ASSIGN Expr
+    (19) Exec -> . BEGIN ListaInstrucao END
+
+    IF              shift and go to state 21
+    WRITE           shift and go to state 25
+    WRITELN         shift and go to state 26
+    READ            shift and go to state 27
+    READLN          shift and go to state 28
+    END             reduce using rule 74 (empty -> .)
+    WHILE           shift and go to state 29
+    FOR             shift and go to state 30
+    ID              shift and go to state 31
+    BEGIN           shift and go to state 11
+
+    ListaInstrucao                 shift and go to state 18
+    Instrucao                      shift and go to state 19
+    empty                          shift and go to state 20
+    Loop                           shift and go to state 22
+    Atr                            shift and go to state 23
+    Exec                           shift and go to state 24
+
+state 12
+
+    (3) VarSec -> VAR ListaDeclaracaoVars .
+
+    BEGIN           reduce using rule 3 (VarSec -> VAR ListaDeclaracaoVars .)
+
+
+state 13
+
+    (5) ListaDeclaracaoVars -> DeclVar . ListaDeclaracaoVars
+    (5) ListaDeclaracaoVars -> . DeclVar ListaDeclaracaoVars
+    (6) ListaDeclaracaoVars -> . empty
+    (7) DeclVar -> . ListaVariaveis COLON Tipo SEMICOLON
+    (74) empty -> .
+    (10) ListaVariaveis -> . Variavel ListaVariaveisTail
+    (8) Variavel -> . ID LBRACKET Expr RBRACKET
+    (9) Variavel -> . ID
+
+    BEGIN           reduce using rule 74 (empty -> .)
+    ID              shift and go to state 17
+
+    DeclVar                        shift and go to state 13
+    ListaDeclaracaoVars            shift and go to state 32
+    empty                          shift and go to state 14
+    ListaVariaveis                 shift and go to state 15
+    Variavel                       shift and go to state 16
+
+state 14
+
+    (6) ListaDeclaracaoVars -> empty .
+
+    BEGIN           reduce using rule 6 (ListaDeclaracaoVars -> empty .)
+
+
+state 15
+
+    (7) DeclVar -> ListaVariaveis . COLON Tipo SEMICOLON
+
+    COLON           shift and go to state 33
+
+
+state 16
+
+    (10) ListaVariaveis -> Variavel . ListaVariaveisTail
+    (11) ListaVariaveisTail -> . COMMA Variavel ListaVariaveisTail
+    (12) ListaVariaveisTail -> . empty
+    (74) empty -> .
+
+    COMMA           shift and go to state 35
+    COLON           reduce using rule 74 (empty -> .)
+    RPAREN          reduce using rule 74 (empty -> .)
+
+    ListaVariaveisTail             shift and go to state 34
+    empty                          shift and go to state 36
+
+state 17
+
+    (8) Variavel -> ID . LBRACKET Expr RBRACKET
+    (9) Variavel -> ID .
+
+    LBRACKET        shift and go to state 37
+    COMMA           reduce using rule 9 (Variavel -> ID .)
+    COLON           reduce using rule 9 (Variavel -> ID .)
+    RPAREN          reduce using rule 9 (Variavel -> ID .)
+
+
+state 18
+
+    (19) Exec -> BEGIN ListaInstrucao . END
+
+    END             shift and go to state 38
+
+
+state 19
+
+    (20) ListaInstrucao -> Instrucao . SEMICOLON ListaInstrucao
+    (21) ListaInstrucao -> Instrucao .
+
+    SEMICOLON       shift and go to state 39
+    END             reduce using rule 21 (ListaInstrucao -> Instrucao .)
+
+
+state 20
+
+    (22) ListaInstrucao -> empty .
+
+    END             reduce using rule 22 (ListaInstrucao -> empty .)
+
+
+state 21
+
+    (23) Instrucao -> IF . Expr THEN Instrucao
+    (24) Instrucao -> IF . Expr THEN Instrucao ELSE Instrucao
+    (38) Expr -> . Expr OR TermoAnd
+    (39) Expr -> . TermoAnd
+    (43) TermoAnd -> . TermoAnd AND TermoIgualdade
+    (44) TermoAnd -> . TermoIgualdade
+    (45) TermoIgualdade -> . TermoIgualdade EQUAL TermoRelacional
+    (46) TermoIgualdade -> . TermoIgualdade NOTEQUAL TermoRelacional
+    (47) TermoIgualdade -> . TermoRelacional
+    (48) TermoRelacional -> . TermoRelacional BIGGERTHEN TermoAditivo
+    (49) TermoRelacional -> . TermoRelacional SMALLERTHEN TermoAditivo
+    (50) TermoRelacional -> . TermoRelacional BIGOREQ TermoAditivo
+    (51) TermoRelacional -> . TermoRelacional SMALOREQ TermoAditivo
+    (52) TermoRelacional -> . TermoAditivo
+    (53) TermoAditivo -> . TermoAditivo ADD TermoMultiplicativo
+    (54) TermoAditivo -> . TermoAditivo SUB TermoMultiplicativo
+    (55) TermoAditivo -> . TermoMultiplicativo
+    (56) TermoMultiplicativo -> . TermoMultiplicativo MUL Fator
+    (57) TermoMultiplicativo -> . TermoMultiplicativo DIV Fator
+    (58) TermoMultiplicativo -> . TermoMultiplicativo MOD Fator
+    (59) TermoMultiplicativo -> . Fator
+    (60) Fator -> . ID
+    (61) Fator -> . NUMBER
+    (62) Fator -> . STRING
+    (63) Fator -> . TRUE
+    (64) Fator -> . FALSE
+    (65) Fator -> . LPAREN Expr RPAREN
+    (66) Fator -> . ID LBRACKET Expr RBRACKET
+    (67) Fator -> . ID DOT ID
+    (68) Fator -> . ID LPAREN ID RPAREN
+    (69) Fator -> . CHAR
+
+    ID              shift and go to state 47
+    NUMBER          shift and go to state 48
+    STRING          shift and go to state 49
+    TRUE            shift and go to state 50
+    FALSE           shift and go to state 51
+    LPAREN          shift and go to state 52
+    CHAR            shift and go to state 53
+
+    Expr                           shift and go to state 40
+    TermoAnd                       shift and go to state 41
+    TermoIgualdade                 shift and go to state 42
+    TermoRelacional                shift and go to state 43
+    TermoAditivo                   shift and go to state 44
+    TermoMultiplicativo            shift and go to state 45
+    Fator                          shift and go to state 46
+
+state 22
+
+    (25) Instrucao -> Loop .
+
+    SEMICOLON       reduce using rule 25 (Instrucao -> Loop .)
+    END             reduce using rule 25 (Instrucao -> Loop .)
+    ELSE            reduce using rule 25 (Instrucao -> Loop .)
+
+
+state 23
+
+    (26) Instrucao -> Atr .
+
+    SEMICOLON       reduce using rule 26 (Instrucao -> Atr .)
+    END             reduce using rule 26 (Instrucao -> Atr .)
+    ELSE            reduce using rule 26 (Instrucao -> Atr .)
+
+
+state 24
+
+    (27) Instrucao -> Exec .
+
+    SEMICOLON       reduce using rule 27 (Instrucao -> Exec .)
+    END             reduce using rule 27 (Instrucao -> Exec .)
+    ELSE            reduce using rule 27 (Instrucao -> Exec .)
+
+
+state 25
+
+    (28) Instrucao -> WRITE . LPAREN ListaExpr RPAREN
+
+    LPAREN          shift and go to state 54
+
+
+state 26
+
+    (29) Instrucao -> WRITELN . LPAREN ListaExpr RPAREN
+    (30) Instrucao -> WRITELN .
+
+    LPAREN          shift and go to state 55
+    SEMICOLON       reduce using rule 30 (Instrucao -> WRITELN .)
+    END             reduce using rule 30 (Instrucao -> WRITELN .)
+    ELSE            reduce using rule 30 (Instrucao -> WRITELN .)
+
+
+state 27
+
+    (31) Instrucao -> READ . LPAREN ListaVariaveis RPAREN
+
+    LPAREN          shift and go to state 56
+
+
+state 28
+
+    (32) Instrucao -> READLN . LPAREN ListaVariaveis RPAREN
+
+    LPAREN          shift and go to state 57
+
+
+state 29
+
+    (33) Loop -> WHILE . Expr DO Instrucao
+    (38) Expr -> . Expr OR TermoAnd
+    (39) Expr -> . TermoAnd
+    (43) TermoAnd -> . TermoAnd AND TermoIgualdade
+    (44) TermoAnd -> . TermoIgualdade
+    (45) TermoIgualdade -> . TermoIgualdade EQUAL TermoRelacional
+    (46) TermoIgualdade -> . TermoIgualdade NOTEQUAL TermoRelacional
+    (47) TermoIgualdade -> . TermoRelacional
+    (48) TermoRelacional -> . TermoRelacional BIGGERTHEN TermoAditivo
+    (49) TermoRelacional -> . TermoRelacional SMALLERTHEN TermoAditivo
+    (50) TermoRelacional -> . TermoRelacional BIGOREQ TermoAditivo
+    (51) TermoRelacional -> . TermoRelacional SMALOREQ TermoAditivo
+    (52) TermoRelacional -> . TermoAditivo
+    (53) TermoAditivo -> . TermoAditivo ADD TermoMultiplicativo
+    (54) TermoAditivo -> . TermoAditivo SUB TermoMultiplicativo
+    (55) TermoAditivo -> . TermoMultiplicativo
+    (56) TermoMultiplicativo -> . TermoMultiplicativo MUL Fator
+    (57) TermoMultiplicativo -> . TermoMultiplicativo DIV Fator
+    (58) TermoMultiplicativo -> . TermoMultiplicativo MOD Fator
+    (59) TermoMultiplicativo -> . Fator
+    (60) Fator -> . ID
+    (61) Fator -> . NUMBER
+    (62) Fator -> . STRING
+    (63) Fator -> . TRUE
+    (64) Fator -> . FALSE
+    (65) Fator -> . LPAREN Expr RPAREN
+    (66) Fator -> . ID LBRACKET Expr RBRACKET
+    (67) Fator -> . ID DOT ID
+    (68) Fator -> . ID LPAREN ID RPAREN
+    (69) Fator -> . CHAR
+
+    ID              shift and go to state 47
+    NUMBER          shift and go to state 48
+    STRING          shift and go to state 49
+    TRUE            shift and go to state 50
+    FALSE           shift and go to state 51
+    LPAREN          shift and go to state 52
+    CHAR            shift and go to state 53
+
+    Expr                           shift and go to state 58
+    TermoAnd                       shift and go to state 41
+    TermoIgualdade                 shift and go to state 42
+    TermoRelacional                shift and go to state 43
+    TermoAditivo                   shift and go to state 44
+    TermoMultiplicativo            shift and go to state 45
+    Fator                          shift and go to state 46
+
+state 30
+
+    (34) Loop -> FOR . ID ASSIGN Expr TO Expr DO Instrucao
+    (35) Loop -> FOR . ID ASSIGN Expr DOWNTO Expr DO Instrucao
+
+    ID              shift and go to state 59
+
+
+state 31
+
+    (36) Atr -> ID . ASSIGN Expr
+    (37) Atr -> ID . LBRACKET Expr RBRACKET ASSIGN Expr
+
+    ASSIGN          shift and go to state 60
+    LBRACKET        shift and go to state 61
+
+
+state 32
+
+    (5) ListaDeclaracaoVars -> DeclVar ListaDeclaracaoVars .
+
+    BEGIN           reduce using rule 5 (ListaDeclaracaoVars -> DeclVar ListaDeclaracaoVars .)
+
+
+state 33
+
+    (7) DeclVar -> ListaVariaveis COLON . Tipo SEMICOLON
+    (13) Tipo -> . INTEGER
+    (14) Tipo -> . REAL
+    (15) Tipo -> . CHAR_TYPE
+    (16) Tipo -> . BOOLEAN
+    (17) Tipo -> . STRING_TYPE
+    (18) Tipo -> . ARRAY LBRACKET NUMBER DOTDOT NUMBER RBRACKET OF Tipo
+
+    INTEGER         shift and go to state 63
+    REAL            shift and go to state 64
+    CHAR_TYPE       shift and go to state 65
+    BOOLEAN         shift and go to state 66
+    STRING_TYPE     shift and go to state 67
+    ARRAY           shift and go to state 68
+
+    Tipo                           shift and go to state 62
+
+state 34
+
+    (10) ListaVariaveis -> Variavel ListaVariaveisTail .
+
+    COLON           reduce using rule 10 (ListaVariaveis -> Variavel ListaVariaveisTail .)
+    RPAREN          reduce using rule 10 (ListaVariaveis -> Variavel ListaVariaveisTail .)
+
+
+state 35
+
+    (11) ListaVariaveisTail -> COMMA . Variavel ListaVariaveisTail
+    (8) Variavel -> . ID LBRACKET Expr RBRACKET
+    (9) Variavel -> . ID
+
+    ID              shift and go to state 17
+
+    Variavel                       shift and go to state 69
+
+state 36
+
+    (12) ListaVariaveisTail -> empty .
+
+    COLON           reduce using rule 12 (ListaVariaveisTail -> empty .)
+    RPAREN          reduce using rule 12 (ListaVariaveisTail -> empty .)
+
+
+state 37
+
+    (8) Variavel -> ID LBRACKET . Expr RBRACKET
+    (38) Expr -> . Expr OR TermoAnd
+    (39) Expr -> . TermoAnd
+    (43) TermoAnd -> . TermoAnd AND TermoIgualdade
+    (44) TermoAnd -> . TermoIgualdade
+    (45) TermoIgualdade -> . TermoIgualdade EQUAL TermoRelacional
+    (46) TermoIgualdade -> . TermoIgualdade NOTEQUAL TermoRelacional
+    (47) TermoIgualdade -> . TermoRelacional
+    (48) TermoRelacional -> . TermoRelacional BIGGERTHEN TermoAditivo
+    (49) TermoRelacional -> . TermoRelacional SMALLERTHEN TermoAditivo
+    (50) TermoRelacional -> . TermoRelacional BIGOREQ TermoAditivo
+    (51) TermoRelacional -> . TermoRelacional SMALOREQ TermoAditivo
+    (52) TermoRelacional -> . TermoAditivo
+    (53) TermoAditivo -> . TermoAditivo ADD TermoMultiplicativo
+    (54) TermoAditivo -> . TermoAditivo SUB TermoMultiplicativo
+    (55) TermoAditivo -> . TermoMultiplicativo
+    (56) TermoMultiplicativo -> . TermoMultiplicativo MUL Fator
+    (57) TermoMultiplicativo -> . TermoMultiplicativo DIV Fator
+    (58) TermoMultiplicativo -> . TermoMultiplicativo MOD Fator
+    (59) TermoMultiplicativo -> . Fator
+    (60) Fator -> . ID
+    (61) Fator -> . NUMBER
+    (62) Fator -> . STRING
+    (63) Fator -> . TRUE
+    (64) Fator -> . FALSE
+    (65) Fator -> . LPAREN Expr RPAREN
+    (66) Fator -> . ID LBRACKET Expr RBRACKET
+    (67) Fator -> . ID DOT ID
+    (68) Fator -> . ID LPAREN ID RPAREN
+    (69) Fator -> . CHAR
+
+    ID              shift and go to state 47
+    NUMBER          shift and go to state 48
+    STRING          shift and go to state 49
+    TRUE            shift and go to state 50
+    FALSE           shift and go to state 51
+    LPAREN          shift and go to state 52
+    CHAR            shift and go to state 53
+
+    Expr                           shift and go to state 70
+    TermoAnd                       shift and go to state 41
+    TermoIgualdade                 shift and go to state 42
+    TermoRelacional                shift and go to state 43
+    TermoAditivo                   shift and go to state 44
+    TermoMultiplicativo            shift and go to state 45
+    Fator                          shift and go to state 46
+
+state 38
+
+    (19) Exec -> BEGIN ListaInstrucao END .
+
+    DOT             reduce using rule 19 (Exec -> BEGIN ListaInstrucao END .)
+    SEMICOLON       reduce using rule 19 (Exec -> BEGIN ListaInstrucao END .)
+    END             reduce using rule 19 (Exec -> BEGIN ListaInstrucao END .)
+    ELSE            reduce using rule 19 (Exec -> BEGIN ListaInstrucao END .)
+
+
+state 39
+
+    (20) ListaInstrucao -> Instrucao SEMICOLON . ListaInstrucao
+    (20) ListaInstrucao -> . Instrucao SEMICOLON ListaInstrucao
+    (21) ListaInstrucao -> . Instrucao
+    (22) ListaInstrucao -> . empty
+    (23) Instrucao -> . IF Expr THEN Instrucao
+    (24) Instrucao -> . IF Expr THEN Instrucao ELSE Instrucao
+    (25) Instrucao -> . Loop
+    (26) Instrucao -> . Atr
+    (27) Instrucao -> . Exec
+    (28) Instrucao -> . WRITE LPAREN ListaExpr RPAREN
+    (29) Instrucao -> . WRITELN LPAREN ListaExpr RPAREN
+    (30) Instrucao -> . WRITELN
+    (31) Instrucao -> . READ LPAREN ListaVariaveis RPAREN
+    (32) Instrucao -> . READLN LPAREN ListaVariaveis RPAREN
+    (74) empty -> .
+    (33) Loop -> . WHILE Expr DO Instrucao
+    (34) Loop -> . FOR ID ASSIGN Expr TO Expr DO Instrucao
+    (35) Loop -> . FOR ID ASSIGN Expr DOWNTO Expr DO Instrucao
+    (36) Atr -> . ID ASSIGN Expr
+    (37) Atr -> . ID LBRACKET Expr RBRACKET ASSIGN Expr
+    (19) Exec -> . BEGIN ListaInstrucao END
+
+    IF              shift and go to state 21
+    WRITE           shift and go to state 25
+    WRITELN         shift and go to state 26
+    READ            shift and go to state 27
+    READLN          shift and go to state 28
+    END             reduce using rule 74 (empty -> .)
+    WHILE           shift and go to state 29
+    FOR             shift and go to state 30
+    ID              shift and go to state 31
+    BEGIN           shift and go to state 11
+
+    Instrucao                      shift and go to state 19
+    ListaInstrucao                 shift and go to state 71
+    empty                          shift and go to state 20
+    Loop                           shift and go to state 22
+    Atr                            shift and go to state 23
+    Exec                           shift and go to state 24
+
+state 40
+
+    (23) Instrucao -> IF Expr . THEN Instrucao
+    (24) Instrucao -> IF Expr . THEN Instrucao ELSE Instrucao
+    (38) Expr -> Expr . OR TermoAnd
+
+    THEN            shift and go to state 72
+    OR              shift and go to state 73
+
+
+state 41
+
+    (39) Expr -> TermoAnd .
+    (43) TermoAnd -> TermoAnd . AND TermoIgualdade
+
+    THEN            reduce using rule 39 (Expr -> TermoAnd .)
+    OR              reduce using rule 39 (Expr -> TermoAnd .)
+    DO              reduce using rule 39 (Expr -> TermoAnd .)
+    RBRACKET        reduce using rule 39 (Expr -> TermoAnd .)
+    RPAREN          reduce using rule 39 (Expr -> TermoAnd .)
+    COMMA           reduce using rule 39 (Expr -> TermoAnd .)
+    SEMICOLON       reduce using rule 39 (Expr -> TermoAnd .)
+    END             reduce using rule 39 (Expr -> TermoAnd .)
+    ELSE            reduce using rule 39 (Expr -> TermoAnd .)
+    TO              reduce using rule 39 (Expr -> TermoAnd .)
+    DOWNTO          reduce using rule 39 (Expr -> TermoAnd .)
+    AND             shift and go to state 74
+
+
+state 42
+
+    (44) TermoAnd -> TermoIgualdade .
+    (45) TermoIgualdade -> TermoIgualdade . EQUAL TermoRelacional
+    (46) TermoIgualdade -> TermoIgualdade . NOTEQUAL TermoRelacional
+
+    AND             reduce using rule 44 (TermoAnd -> TermoIgualdade .)
+    THEN            reduce using rule 44 (TermoAnd -> TermoIgualdade .)
+    OR              reduce using rule 44 (TermoAnd -> TermoIgualdade .)
+    DO              reduce using rule 44 (TermoAnd -> TermoIgualdade .)
+    RBRACKET        reduce using rule 44 (TermoAnd -> TermoIgualdade .)
+    RPAREN          reduce using rule 44 (TermoAnd -> TermoIgualdade .)
+    COMMA           reduce using rule 44 (TermoAnd -> TermoIgualdade .)
+    SEMICOLON       reduce using rule 44 (TermoAnd -> TermoIgualdade .)
+    END             reduce using rule 44 (TermoAnd -> TermoIgualdade .)
+    ELSE            reduce using rule 44 (TermoAnd -> TermoIgualdade .)
+    TO              reduce using rule 44 (TermoAnd -> TermoIgualdade .)
+    DOWNTO          reduce using rule 44 (TermoAnd -> TermoIgualdade .)
+    EQUAL           shift and go to state 75
+    NOTEQUAL        shift and go to state 76
+
+
+state 43
+
+    (47) TermoIgualdade -> TermoRelacional .
+    (48) TermoRelacional -> TermoRelacional . BIGGERTHEN TermoAditivo
+    (49) TermoRelacional -> TermoRelacional . SMALLERTHEN TermoAditivo
+    (50) TermoRelacional -> TermoRelacional . BIGOREQ TermoAditivo
+    (51) TermoRelacional -> TermoRelacional . SMALOREQ TermoAditivo
+
+    EQUAL           reduce using rule 47 (TermoIgualdade -> TermoRelacional .)
+    NOTEQUAL        reduce using rule 47 (TermoIgualdade -> TermoRelacional .)
+    AND             reduce using rule 47 (TermoIgualdade -> TermoRelacional .)
+    THEN            reduce using rule 47 (TermoIgualdade -> TermoRelacional .)
+    OR              reduce using rule 47 (TermoIgualdade -> TermoRelacional .)
+    DO              reduce using rule 47 (TermoIgualdade -> TermoRelacional .)
+    RBRACKET        reduce using rule 47 (TermoIgualdade -> TermoRelacional .)
+    RPAREN          reduce using rule 47 (TermoIgualdade -> TermoRelacional .)
+    COMMA           reduce using rule 47 (TermoIgualdade -> TermoRelacional .)
+    SEMICOLON       reduce using rule 47 (TermoIgualdade -> TermoRelacional .)
+    END             reduce using rule 47 (TermoIgualdade -> TermoRelacional .)
+    ELSE            reduce using rule 47 (TermoIgualdade -> TermoRelacional .)
+    TO              reduce using rule 47 (TermoIgualdade -> TermoRelacional .)
+    DOWNTO          reduce using rule 47 (TermoIgualdade -> TermoRelacional .)
+    BIGGERTHEN      shift and go to state 77
+    SMALLERTHEN     shift and go to state 78
+    BIGOREQ         shift and go to state 79
+    SMALOREQ        shift and go to state 80
+
+
+state 44
+
+    (52) TermoRelacional -> TermoAditivo .
+    (53) TermoAditivo -> TermoAditivo . ADD TermoMultiplicativo
+    (54) TermoAditivo -> TermoAditivo . SUB TermoMultiplicativo
+
+    BIGGERTHEN      reduce using rule 52 (TermoRelacional -> TermoAditivo .)
+    SMALLERTHEN     reduce using rule 52 (TermoRelacional -> TermoAditivo .)
+    BIGOREQ         reduce using rule 52 (TermoRelacional -> TermoAditivo .)
+    SMALOREQ        reduce using rule 52 (TermoRelacional -> TermoAditivo .)
+    EQUAL           reduce using rule 52 (TermoRelacional -> TermoAditivo .)
+    NOTEQUAL        reduce using rule 52 (TermoRelacional -> TermoAditivo .)
+    AND             reduce using rule 52 (TermoRelacional -> TermoAditivo .)
+    THEN            reduce using rule 52 (TermoRelacional -> TermoAditivo .)
+    OR              reduce using rule 52 (TermoRelacional -> TermoAditivo .)
+    DO              reduce using rule 52 (TermoRelacional -> TermoAditivo .)
+    RBRACKET        reduce using rule 52 (TermoRelacional -> TermoAditivo .)
+    RPAREN          reduce using rule 52 (TermoRelacional -> TermoAditivo .)
+    COMMA           reduce using rule 52 (TermoRelacional -> TermoAditivo .)
+    SEMICOLON       reduce using rule 52 (TermoRelacional -> TermoAditivo .)
+    END             reduce using rule 52 (TermoRelacional -> TermoAditivo .)
+    ELSE            reduce using rule 52 (TermoRelacional -> TermoAditivo .)
+    TO              reduce using rule 52 (TermoRelacional -> TermoAditivo .)
+    DOWNTO          reduce using rule 52 (TermoRelacional -> TermoAditivo .)
+    ADD             shift and go to state 81
+    SUB             shift and go to state 82
+
+
+state 45
+
+    (55) TermoAditivo -> TermoMultiplicativo .
+    (56) TermoMultiplicativo -> TermoMultiplicativo . MUL Fator
+    (57) TermoMultiplicativo -> TermoMultiplicativo . DIV Fator
+    (58) TermoMultiplicativo -> TermoMultiplicativo . MOD Fator
+
+    ADD             reduce using rule 55 (TermoAditivo -> TermoMultiplicativo .)
+    SUB             reduce using rule 55 (TermoAditivo -> TermoMultiplicativo .)
+    BIGGERTHEN      reduce using rule 55 (TermoAditivo -> TermoMultiplicativo .)
+    SMALLERTHEN     reduce using rule 55 (TermoAditivo -> TermoMultiplicativo .)
+    BIGOREQ         reduce using rule 55 (TermoAditivo -> TermoMultiplicativo .)
+    SMALOREQ        reduce using rule 55 (TermoAditivo -> TermoMultiplicativo .)
+    EQUAL           reduce using rule 55 (TermoAditivo -> TermoMultiplicativo .)
+    NOTEQUAL        reduce using rule 55 (TermoAditivo -> TermoMultiplicativo .)
+    AND             reduce using rule 55 (TermoAditivo -> TermoMultiplicativo .)
+    THEN            reduce using rule 55 (TermoAditivo -> TermoMultiplicativo .)
+    OR              reduce using rule 55 (TermoAditivo -> TermoMultiplicativo .)
+    DO              reduce using rule 55 (TermoAditivo -> TermoMultiplicativo .)
+    RBRACKET        reduce using rule 55 (TermoAditivo -> TermoMultiplicativo .)
+    RPAREN          reduce using rule 55 (TermoAditivo -> TermoMultiplicativo .)
+    COMMA           reduce using rule 55 (TermoAditivo -> TermoMultiplicativo .)
+    SEMICOLON       reduce using rule 55 (TermoAditivo -> TermoMultiplicativo .)
+    END             reduce using rule 55 (TermoAditivo -> TermoMultiplicativo .)
+    ELSE            reduce using rule 55 (TermoAditivo -> TermoMultiplicativo .)
+    TO              reduce using rule 55 (TermoAditivo -> TermoMultiplicativo .)
+    DOWNTO          reduce using rule 55 (TermoAditivo -> TermoMultiplicativo .)
+    MUL             shift and go to state 83
+    DIV             shift and go to state 84
+    MOD             shift and go to state 85
+
+
+state 46
+
+    (59) TermoMultiplicativo -> Fator .
+
+    MUL             reduce using rule 59 (TermoMultiplicativo -> Fator .)
+    DIV             reduce using rule 59 (TermoMultiplicativo -> Fator .)
+    MOD             reduce using rule 59 (TermoMultiplicativo -> Fator .)
+    ADD             reduce using rule 59 (TermoMultiplicativo -> Fator .)
+    SUB             reduce using rule 59 (TermoMultiplicativo -> Fator .)
+    BIGGERTHEN      reduce using rule 59 (TermoMultiplicativo -> Fator .)
+    SMALLERTHEN     reduce using rule 59 (TermoMultiplicativo -> Fator .)
+    BIGOREQ         reduce using rule 59 (TermoMultiplicativo -> Fator .)
+    SMALOREQ        reduce using rule 59 (TermoMultiplicativo -> Fator .)
+    EQUAL           reduce using rule 59 (TermoMultiplicativo -> Fator .)
+    NOTEQUAL        reduce using rule 59 (TermoMultiplicativo -> Fator .)
+    AND             reduce using rule 59 (TermoMultiplicativo -> Fator .)
+    THEN            reduce using rule 59 (TermoMultiplicativo -> Fator .)
+    OR              reduce using rule 59 (TermoMultiplicativo -> Fator .)
+    DO              reduce using rule 59 (TermoMultiplicativo -> Fator .)
+    RBRACKET        reduce using rule 59 (TermoMultiplicativo -> Fator .)
+    RPAREN          reduce using rule 59 (TermoMultiplicativo -> Fator .)
+    COMMA           reduce using rule 59 (TermoMultiplicativo -> Fator .)
+    SEMICOLON       reduce using rule 59 (TermoMultiplicativo -> Fator .)
+    END             reduce using rule 59 (TermoMultiplicativo -> Fator .)
+    ELSE            reduce using rule 59 (TermoMultiplicativo -> Fator .)
+    TO              reduce using rule 59 (TermoMultiplicativo -> Fator .)
+    DOWNTO          reduce using rule 59 (TermoMultiplicativo -> Fator .)
+
+
+state 47
+
+    (60) Fator -> ID .
+    (66) Fator -> ID . LBRACKET Expr RBRACKET
+    (67) Fator -> ID . DOT ID
+    (68) Fator -> ID . LPAREN ID RPAREN
+
+    MUL             reduce using rule 60 (Fator -> ID .)
+    DIV             reduce using rule 60 (Fator -> ID .)
+    MOD             reduce using rule 60 (Fator -> ID .)
+    ADD             reduce using rule 60 (Fator -> ID .)
+    SUB             reduce using rule 60 (Fator -> ID .)
+    BIGGERTHEN      reduce using rule 60 (Fator -> ID .)
+    SMALLERTHEN     reduce using rule 60 (Fator -> ID .)
+    BIGOREQ         reduce using rule 60 (Fator -> ID .)
+    SMALOREQ        reduce using rule 60 (Fator -> ID .)
+    EQUAL           reduce using rule 60 (Fator -> ID .)
+    NOTEQUAL        reduce using rule 60 (Fator -> ID .)
+    AND             reduce using rule 60 (Fator -> ID .)
+    THEN            reduce using rule 60 (Fator -> ID .)
+    OR              reduce using rule 60 (Fator -> ID .)
+    DO              reduce using rule 60 (Fator -> ID .)
+    RBRACKET        reduce using rule 60 (Fator -> ID .)
+    RPAREN          reduce using rule 60 (Fator -> ID .)
+    COMMA           reduce using rule 60 (Fator -> ID .)
+    SEMICOLON       reduce using rule 60 (Fator -> ID .)
+    END             reduce using rule 60 (Fator -> ID .)
+    ELSE            reduce using rule 60 (Fator -> ID .)
+    TO              reduce using rule 60 (Fator -> ID .)
+    DOWNTO          reduce using rule 60 (Fator -> ID .)
+    LBRACKET        shift and go to state 86
+    DOT             shift and go to state 87
+    LPAREN          shift and go to state 88
+
+
+state 48
+
+    (61) Fator -> NUMBER .
+
+    MUL             reduce using rule 61 (Fator -> NUMBER .)
+    DIV             reduce using rule 61 (Fator -> NUMBER .)
+    MOD             reduce using rule 61 (Fator -> NUMBER .)
+    ADD             reduce using rule 61 (Fator -> NUMBER .)
+    SUB             reduce using rule 61 (Fator -> NUMBER .)
+    BIGGERTHEN      reduce using rule 61 (Fator -> NUMBER .)
+    SMALLERTHEN     reduce using rule 61 (Fator -> NUMBER .)
+    BIGOREQ         reduce using rule 61 (Fator -> NUMBER .)
+    SMALOREQ        reduce using rule 61 (Fator -> NUMBER .)
+    EQUAL           reduce using rule 61 (Fator -> NUMBER .)
+    NOTEQUAL        reduce using rule 61 (Fator -> NUMBER .)
+    AND             reduce using rule 61 (Fator -> NUMBER .)
+    THEN            reduce using rule 61 (Fator -> NUMBER .)
+    OR              reduce using rule 61 (Fator -> NUMBER .)
+    DO              reduce using rule 61 (Fator -> NUMBER .)
+    RBRACKET        reduce using rule 61 (Fator -> NUMBER .)
+    RPAREN          reduce using rule 61 (Fator -> NUMBER .)
+    COMMA           reduce using rule 61 (Fator -> NUMBER .)
+    SEMICOLON       reduce using rule 61 (Fator -> NUMBER .)
+    END             reduce using rule 61 (Fator -> NUMBER .)
+    ELSE            reduce using rule 61 (Fator -> NUMBER .)
+    TO              reduce using rule 61 (Fator -> NUMBER .)
+    DOWNTO          reduce using rule 61 (Fator -> NUMBER .)
+
+
+state 49
+
+    (62) Fator -> STRING .
+
+    MUL             reduce using rule 62 (Fator -> STRING .)
+    DIV             reduce using rule 62 (Fator -> STRING .)
+    MOD             reduce using rule 62 (Fator -> STRING .)
+    ADD             reduce using rule 62 (Fator -> STRING .)
+    SUB             reduce using rule 62 (Fator -> STRING .)
+    BIGGERTHEN      reduce using rule 62 (Fator -> STRING .)
+    SMALLERTHEN     reduce using rule 62 (Fator -> STRING .)
+    BIGOREQ         reduce using rule 62 (Fator -> STRING .)
+    SMALOREQ        reduce using rule 62 (Fator -> STRING .)
+    EQUAL           reduce using rule 62 (Fator -> STRING .)
+    NOTEQUAL        reduce using rule 62 (Fator -> STRING .)
+    AND             reduce using rule 62 (Fator -> STRING .)
+    THEN            reduce using rule 62 (Fator -> STRING .)
+    OR              reduce using rule 62 (Fator -> STRING .)
+    DO              reduce using rule 62 (Fator -> STRING .)
+    RBRACKET        reduce using rule 62 (Fator -> STRING .)
+    RPAREN          reduce using rule 62 (Fator -> STRING .)
+    COMMA           reduce using rule 62 (Fator -> STRING .)
+    SEMICOLON       reduce using rule 62 (Fator -> STRING .)
+    END             reduce using rule 62 (Fator -> STRING .)
+    ELSE            reduce using rule 62 (Fator -> STRING .)
+    TO              reduce using rule 62 (Fator -> STRING .)
+    DOWNTO          reduce using rule 62 (Fator -> STRING .)
+
+
+state 50
+
+    (63) Fator -> TRUE .
+
+    MUL             reduce using rule 63 (Fator -> TRUE .)
+    DIV             reduce using rule 63 (Fator -> TRUE .)
+    MOD             reduce using rule 63 (Fator -> TRUE .)
+    ADD             reduce using rule 63 (Fator -> TRUE .)
+    SUB             reduce using rule 63 (Fator -> TRUE .)
+    BIGGERTHEN      reduce using rule 63 (Fator -> TRUE .)
+    SMALLERTHEN     reduce using rule 63 (Fator -> TRUE .)
+    BIGOREQ         reduce using rule 63 (Fator -> TRUE .)
+    SMALOREQ        reduce using rule 63 (Fator -> TRUE .)
+    EQUAL           reduce using rule 63 (Fator -> TRUE .)
+    NOTEQUAL        reduce using rule 63 (Fator -> TRUE .)
+    AND             reduce using rule 63 (Fator -> TRUE .)
+    THEN            reduce using rule 63 (Fator -> TRUE .)
+    OR              reduce using rule 63 (Fator -> TRUE .)
+    DO              reduce using rule 63 (Fator -> TRUE .)
+    RBRACKET        reduce using rule 63 (Fator -> TRUE .)
+    RPAREN          reduce using rule 63 (Fator -> TRUE .)
+    COMMA           reduce using rule 63 (Fator -> TRUE .)
+    SEMICOLON       reduce using rule 63 (Fator -> TRUE .)
+    END             reduce using rule 63 (Fator -> TRUE .)
+    ELSE            reduce using rule 63 (Fator -> TRUE .)
+    TO              reduce using rule 63 (Fator -> TRUE .)
+    DOWNTO          reduce using rule 63 (Fator -> TRUE .)
+
+
+state 51
+
+    (64) Fator -> FALSE .
+
+    MUL             reduce using rule 64 (Fator -> FALSE .)
+    DIV             reduce using rule 64 (Fator -> FALSE .)
+    MOD             reduce using rule 64 (Fator -> FALSE .)
+    ADD             reduce using rule 64 (Fator -> FALSE .)
+    SUB             reduce using rule 64 (Fator -> FALSE .)
+    BIGGERTHEN      reduce using rule 64 (Fator -> FALSE .)
+    SMALLERTHEN     reduce using rule 64 (Fator -> FALSE .)
+    BIGOREQ         reduce using rule 64 (Fator -> FALSE .)
+    SMALOREQ        reduce using rule 64 (Fator -> FALSE .)
+    EQUAL           reduce using rule 64 (Fator -> FALSE .)
+    NOTEQUAL        reduce using rule 64 (Fator -> FALSE .)
+    AND             reduce using rule 64 (Fator -> FALSE .)
+    THEN            reduce using rule 64 (Fator -> FALSE .)
+    OR              reduce using rule 64 (Fator -> FALSE .)
+    DO              reduce using rule 64 (Fator -> FALSE .)
+    RBRACKET        reduce using rule 64 (Fator -> FALSE .)
+    RPAREN          reduce using rule 64 (Fator -> FALSE .)
+    COMMA           reduce using rule 64 (Fator -> FALSE .)
+    SEMICOLON       reduce using rule 64 (Fator -> FALSE .)
+    END             reduce using rule 64 (Fator -> FALSE .)
+    ELSE            reduce using rule 64 (Fator -> FALSE .)
+    TO              reduce using rule 64 (Fator -> FALSE .)
+    DOWNTO          reduce using rule 64 (Fator -> FALSE .)
+
+
+state 52
+
+    (65) Fator -> LPAREN . Expr RPAREN
+    (38) Expr -> . Expr OR TermoAnd
+    (39) Expr -> . TermoAnd
+    (43) TermoAnd -> . TermoAnd AND TermoIgualdade
+    (44) TermoAnd -> . TermoIgualdade
+    (45) TermoIgualdade -> . TermoIgualdade EQUAL TermoRelacional
+    (46) TermoIgualdade -> . TermoIgualdade NOTEQUAL TermoRelacional
+    (47) TermoIgualdade -> . TermoRelacional
+    (48) TermoRelacional -> . TermoRelacional BIGGERTHEN TermoAditivo
+    (49) TermoRelacional -> . TermoRelacional SMALLERTHEN TermoAditivo
+    (50) TermoRelacional -> . TermoRelacional BIGOREQ TermoAditivo
+    (51) TermoRelacional -> . TermoRelacional SMALOREQ TermoAditivo
+    (52) TermoRelacional -> . TermoAditivo
+    (53) TermoAditivo -> . TermoAditivo ADD TermoMultiplicativo
+    (54) TermoAditivo -> . TermoAditivo SUB TermoMultiplicativo
+    (55) TermoAditivo -> . TermoMultiplicativo
+    (56) TermoMultiplicativo -> . TermoMultiplicativo MUL Fator
+    (57) TermoMultiplicativo -> . TermoMultiplicativo DIV Fator
+    (58) TermoMultiplicativo -> . TermoMultiplicativo MOD Fator
+    (59) TermoMultiplicativo -> . Fator
+    (60) Fator -> . ID
+    (61) Fator -> . NUMBER
+    (62) Fator -> . STRING
+    (63) Fator -> . TRUE
+    (64) Fator -> . FALSE
+    (65) Fator -> . LPAREN Expr RPAREN
+    (66) Fator -> . ID LBRACKET Expr RBRACKET
+    (67) Fator -> . ID DOT ID
+    (68) Fator -> . ID LPAREN ID RPAREN
+    (69) Fator -> . CHAR
+
+    ID              shift and go to state 47
+    NUMBER          shift and go to state 48
+    STRING          shift and go to state 49
+    TRUE            shift and go to state 50
+    FALSE           shift and go to state 51
+    LPAREN          shift and go to state 52
+    CHAR            shift and go to state 53
+
+    Expr                           shift and go to state 89
+    TermoAnd                       shift and go to state 41
+    TermoIgualdade                 shift and go to state 42
+    TermoRelacional                shift and go to state 43
+    TermoAditivo                   shift and go to state 44
+    TermoMultiplicativo            shift and go to state 45
+    Fator                          shift and go to state 46
+
+state 53
+
+    (69) Fator -> CHAR .
+
+    MUL             reduce using rule 69 (Fator -> CHAR .)
+    DIV             reduce using rule 69 (Fator -> CHAR .)
+    MOD             reduce using rule 69 (Fator -> CHAR .)
+    ADD             reduce using rule 69 (Fator -> CHAR .)
+    SUB             reduce using rule 69 (Fator -> CHAR .)
+    BIGGERTHEN      reduce using rule 69 (Fator -> CHAR .)
+    SMALLERTHEN     reduce using rule 69 (Fator -> CHAR .)
+    BIGOREQ         reduce using rule 69 (Fator -> CHAR .)
+    SMALOREQ        reduce using rule 69 (Fator -> CHAR .)
+    EQUAL           reduce using rule 69 (Fator -> CHAR .)
+    NOTEQUAL        reduce using rule 69 (Fator -> CHAR .)
+    AND             reduce using rule 69 (Fator -> CHAR .)
+    THEN            reduce using rule 69 (Fator -> CHAR .)
+    OR              reduce using rule 69 (Fator -> CHAR .)
+    DO              reduce using rule 69 (Fator -> CHAR .)
+    RBRACKET        reduce using rule 69 (Fator -> CHAR .)
+    RPAREN          reduce using rule 69 (Fator -> CHAR .)
+    COMMA           reduce using rule 69 (Fator -> CHAR .)
+    SEMICOLON       reduce using rule 69 (Fator -> CHAR .)
+    END             reduce using rule 69 (Fator -> CHAR .)
+    ELSE            reduce using rule 69 (Fator -> CHAR .)
+    TO              reduce using rule 69 (Fator -> CHAR .)
+    DOWNTO          reduce using rule 69 (Fator -> CHAR .)
+
+
+state 54
+
+    (28) Instrucao -> WRITE LPAREN . ListaExpr RPAREN
+    (40) ListaExpr -> . Expr ListaExprTail
+    (38) Expr -> . Expr OR TermoAnd
+    (39) Expr -> . TermoAnd
+    (43) TermoAnd -> . TermoAnd AND TermoIgualdade
+    (44) TermoAnd -> . TermoIgualdade
+    (45) TermoIgualdade -> . TermoIgualdade EQUAL TermoRelacional
+    (46) TermoIgualdade -> . TermoIgualdade NOTEQUAL TermoRelacional
+    (47) TermoIgualdade -> . TermoRelacional
+    (48) TermoRelacional -> . TermoRelacional BIGGERTHEN TermoAditivo
+    (49) TermoRelacional -> . TermoRelacional SMALLERTHEN TermoAditivo
+    (50) TermoRelacional -> . TermoRelacional BIGOREQ TermoAditivo
+    (51) TermoRelacional -> . TermoRelacional SMALOREQ TermoAditivo
+    (52) TermoRelacional -> . TermoAditivo
+    (53) TermoAditivo -> . TermoAditivo ADD TermoMultiplicativo
+    (54) TermoAditivo -> . TermoAditivo SUB TermoMultiplicativo
+    (55) TermoAditivo -> . TermoMultiplicativo
+    (56) TermoMultiplicativo -> . TermoMultiplicativo MUL Fator
+    (57) TermoMultiplicativo -> . TermoMultiplicativo DIV Fator
+    (58) TermoMultiplicativo -> . TermoMultiplicativo MOD Fator
+    (59) TermoMultiplicativo -> . Fator
+    (60) Fator -> . ID
+    (61) Fator -> . NUMBER
+    (62) Fator -> . STRING
+    (63) Fator -> . TRUE
+    (64) Fator -> . FALSE
+    (65) Fator -> . LPAREN Expr RPAREN
+    (66) Fator -> . ID LBRACKET Expr RBRACKET
+    (67) Fator -> . ID DOT ID
+    (68) Fator -> . ID LPAREN ID RPAREN
+    (69) Fator -> . CHAR
+
+    ID              shift and go to state 47
+    NUMBER          shift and go to state 48
+    STRING          shift and go to state 49
+    TRUE            shift and go to state 50
+    FALSE           shift and go to state 51
+    LPAREN          shift and go to state 52
+    CHAR            shift and go to state 53
+
+    ListaExpr                      shift and go to state 90
+    Expr                           shift and go to state 91
+    TermoAnd                       shift and go to state 41
+    TermoIgualdade                 shift and go to state 42
+    TermoRelacional                shift and go to state 43
+    TermoAditivo                   shift and go to state 44
+    TermoMultiplicativo            shift and go to state 45
+    Fator                          shift and go to state 46
+
+state 55
+
+    (29) Instrucao -> WRITELN LPAREN . ListaExpr RPAREN
+    (40) ListaExpr -> . Expr ListaExprTail
+    (38) Expr -> . Expr OR TermoAnd
+    (39) Expr -> . TermoAnd
+    (43) TermoAnd -> . TermoAnd AND TermoIgualdade
+    (44) TermoAnd -> . TermoIgualdade
+    (45) TermoIgualdade -> . TermoIgualdade EQUAL TermoRelacional
+    (46) TermoIgualdade -> . TermoIgualdade NOTEQUAL TermoRelacional
+    (47) TermoIgualdade -> . TermoRelacional
+    (48) TermoRelacional -> . TermoRelacional BIGGERTHEN TermoAditivo
+    (49) TermoRelacional -> . TermoRelacional SMALLERTHEN TermoAditivo
+    (50) TermoRelacional -> . TermoRelacional BIGOREQ TermoAditivo
+    (51) TermoRelacional -> . TermoRelacional SMALOREQ TermoAditivo
+    (52) TermoRelacional -> . TermoAditivo
+    (53) TermoAditivo -> . TermoAditivo ADD TermoMultiplicativo
+    (54) TermoAditivo -> . TermoAditivo SUB TermoMultiplicativo
+    (55) TermoAditivo -> . TermoMultiplicativo
+    (56) TermoMultiplicativo -> . TermoMultiplicativo MUL Fator
+    (57) TermoMultiplicativo -> . TermoMultiplicativo DIV Fator
+    (58) TermoMultiplicativo -> . TermoMultiplicativo MOD Fator
+    (59) TermoMultiplicativo -> . Fator
+    (60) Fator -> . ID
+    (61) Fator -> . NUMBER
+    (62) Fator -> . STRING
+    (63) Fator -> . TRUE
+    (64) Fator -> . FALSE
+    (65) Fator -> . LPAREN Expr RPAREN
+    (66) Fator -> . ID LBRACKET Expr RBRACKET
+    (67) Fator -> . ID DOT ID
+    (68) Fator -> . ID LPAREN ID RPAREN
+    (69) Fator -> . CHAR
+
+    ID              shift and go to state 47
+    NUMBER          shift and go to state 48
+    STRING          shift and go to state 49
+    TRUE            shift and go to state 50
+    FALSE           shift and go to state 51
+    LPAREN          shift and go to state 52
+    CHAR            shift and go to state 53
+
+    ListaExpr                      shift and go to state 92
+    Expr                           shift and go to state 91
+    TermoAnd                       shift and go to state 41
+    TermoIgualdade                 shift and go to state 42
+    TermoRelacional                shift and go to state 43
+    TermoAditivo                   shift and go to state 44
+    TermoMultiplicativo            shift and go to state 45
+    Fator                          shift and go to state 46
+
+state 56
+
+    (31) Instrucao -> READ LPAREN . ListaVariaveis RPAREN
+    (10) ListaVariaveis -> . Variavel ListaVariaveisTail
+    (8) Variavel -> . ID LBRACKET Expr RBRACKET
+    (9) Variavel -> . ID
+
+    ID              shift and go to state 17
+
+    ListaVariaveis                 shift and go to state 93
+    Variavel                       shift and go to state 16
+
+state 57
+
+    (32) Instrucao -> READLN LPAREN . ListaVariaveis RPAREN
+    (10) ListaVariaveis -> . Variavel ListaVariaveisTail
+    (8) Variavel -> . ID LBRACKET Expr RBRACKET
+    (9) Variavel -> . ID
+
+    ID              shift and go to state 17
+
+    ListaVariaveis                 shift and go to state 94
+    Variavel                       shift and go to state 16
+
+state 58
+
+    (33) Loop -> WHILE Expr . DO Instrucao
+    (38) Expr -> Expr . OR TermoAnd
+
+    DO              shift and go to state 95
+    OR              shift and go to state 73
+
+
+state 59
+
+    (34) Loop -> FOR ID . ASSIGN Expr TO Expr DO Instrucao
+    (35) Loop -> FOR ID . ASSIGN Expr DOWNTO Expr DO Instrucao
+
+    ASSIGN          shift and go to state 96
+
+
+state 60
+
+    (36) Atr -> ID ASSIGN . Expr
+    (38) Expr -> . Expr OR TermoAnd
+    (39) Expr -> . TermoAnd
+    (43) TermoAnd -> . TermoAnd AND TermoIgualdade
+    (44) TermoAnd -> . TermoIgualdade
+    (45) TermoIgualdade -> . TermoIgualdade EQUAL TermoRelacional
+    (46) TermoIgualdade -> . TermoIgualdade NOTEQUAL TermoRelacional
+    (47) TermoIgualdade -> . TermoRelacional
+    (48) TermoRelacional -> . TermoRelacional BIGGERTHEN TermoAditivo
+    (49) TermoRelacional -> . TermoRelacional SMALLERTHEN TermoAditivo
+    (50) TermoRelacional -> . TermoRelacional BIGOREQ TermoAditivo
+    (51) TermoRelacional -> . TermoRelacional SMALOREQ TermoAditivo
+    (52) TermoRelacional -> . TermoAditivo
+    (53) TermoAditivo -> . TermoAditivo ADD TermoMultiplicativo
+    (54) TermoAditivo -> . TermoAditivo SUB TermoMultiplicativo
+    (55) TermoAditivo -> . TermoMultiplicativo
+    (56) TermoMultiplicativo -> . TermoMultiplicativo MUL Fator
+    (57) TermoMultiplicativo -> . TermoMultiplicativo DIV Fator
+    (58) TermoMultiplicativo -> . TermoMultiplicativo MOD Fator
+    (59) TermoMultiplicativo -> . Fator
+    (60) Fator -> . ID
+    (61) Fator -> . NUMBER
+    (62) Fator -> . STRING
+    (63) Fator -> . TRUE
+    (64) Fator -> . FALSE
+    (65) Fator -> . LPAREN Expr RPAREN
+    (66) Fator -> . ID LBRACKET Expr RBRACKET
+    (67) Fator -> . ID DOT ID
+    (68) Fator -> . ID LPAREN ID RPAREN
+    (69) Fator -> . CHAR
+
+    ID              shift and go to state 47
+    NUMBER          shift and go to state 48
+    STRING          shift and go to state 49
+    TRUE            shift and go to state 50
+    FALSE           shift and go to state 51
+    LPAREN          shift and go to state 52
+    CHAR            shift and go to state 53
+
+    Expr                           shift and go to state 97
+    TermoAnd                       shift and go to state 41
+    TermoIgualdade                 shift and go to state 42
+    TermoRelacional                shift and go to state 43
+    TermoAditivo                   shift and go to state 44
+    TermoMultiplicativo            shift and go to state 45
+    Fator                          shift and go to state 46
+
+state 61
+
+    (37) Atr -> ID LBRACKET . Expr RBRACKET ASSIGN Expr
+    (38) Expr -> . Expr OR TermoAnd
+    (39) Expr -> . TermoAnd
+    (43) TermoAnd -> . TermoAnd AND TermoIgualdade
+    (44) TermoAnd -> . TermoIgualdade
+    (45) TermoIgualdade -> . TermoIgualdade EQUAL TermoRelacional
+    (46) TermoIgualdade -> . TermoIgualdade NOTEQUAL TermoRelacional
+    (47) TermoIgualdade -> . TermoRelacional
+    (48) TermoRelacional -> . TermoRelacional BIGGERTHEN TermoAditivo
+    (49) TermoRelacional -> . TermoRelacional SMALLERTHEN TermoAditivo
+    (50) TermoRelacional -> . TermoRelacional BIGOREQ TermoAditivo
+    (51) TermoRelacional -> . TermoRelacional SMALOREQ TermoAditivo
+    (52) TermoRelacional -> . TermoAditivo
+    (53) TermoAditivo -> . TermoAditivo ADD TermoMultiplicativo
+    (54) TermoAditivo -> . TermoAditivo SUB TermoMultiplicativo
+    (55) TermoAditivo -> . TermoMultiplicativo
+    (56) TermoMultiplicativo -> . TermoMultiplicativo MUL Fator
+    (57) TermoMultiplicativo -> . TermoMultiplicativo DIV Fator
+    (58) TermoMultiplicativo -> . TermoMultiplicativo MOD Fator
+    (59) TermoMultiplicativo -> . Fator
+    (60) Fator -> . ID
+    (61) Fator -> . NUMBER
+    (62) Fator -> . STRING
+    (63) Fator -> . TRUE
+    (64) Fator -> . FALSE
+    (65) Fator -> . LPAREN Expr RPAREN
+    (66) Fator -> . ID LBRACKET Expr RBRACKET
+    (67) Fator -> . ID DOT ID
+    (68) Fator -> . ID LPAREN ID RPAREN
+    (69) Fator -> . CHAR
+
+    ID              shift and go to state 47
+    NUMBER          shift and go to state 48
+    STRING          shift and go to state 49
+    TRUE            shift and go to state 50
+    FALSE           shift and go to state 51
+    LPAREN          shift and go to state 52
+    CHAR            shift and go to state 53
+
+    Expr                           shift and go to state 98
+    TermoAnd                       shift and go to state 41
+    TermoIgualdade                 shift and go to state 42
+    TermoRelacional                shift and go to state 43
+    TermoAditivo                   shift and go to state 44
+    TermoMultiplicativo            shift and go to state 45
+    Fator                          shift and go to state 46
+
+state 62
+
+    (7) DeclVar -> ListaVariaveis COLON Tipo . SEMICOLON
+
+    SEMICOLON       shift and go to state 99
+
+
+state 63
+
+    (13) Tipo -> INTEGER .
+
+    SEMICOLON       reduce using rule 13 (Tipo -> INTEGER .)
+
+
+state 64
+
+    (14) Tipo -> REAL .
+
+    SEMICOLON       reduce using rule 14 (Tipo -> REAL .)
+
+
+state 65
+
+    (15) Tipo -> CHAR_TYPE .
+
+    SEMICOLON       reduce using rule 15 (Tipo -> CHAR_TYPE .)
+
+
+state 66
+
+    (16) Tipo -> BOOLEAN .
+
+    SEMICOLON       reduce using rule 16 (Tipo -> BOOLEAN .)
+
+
+state 67
+
+    (17) Tipo -> STRING_TYPE .
+
+    SEMICOLON       reduce using rule 17 (Tipo -> STRING_TYPE .)
+
+
+state 68
+
+    (18) Tipo -> ARRAY . LBRACKET NUMBER DOTDOT NUMBER RBRACKET OF Tipo
+
+    LBRACKET        shift and go to state 100
+
+
+state 69
+
+    (11) ListaVariaveisTail -> COMMA Variavel . ListaVariaveisTail
+    (11) ListaVariaveisTail -> . COMMA Variavel ListaVariaveisTail
+    (12) ListaVariaveisTail -> . empty
+    (74) empty -> .
+
+    COMMA           shift and go to state 35
+    COLON           reduce using rule 74 (empty -> .)
+    RPAREN          reduce using rule 74 (empty -> .)
+
+    ListaVariaveisTail             shift and go to state 101
+    empty                          shift and go to state 36
+
+state 70
+
+    (8) Variavel -> ID LBRACKET Expr . RBRACKET
+    (38) Expr -> Expr . OR TermoAnd
+
+    RBRACKET        shift and go to state 102
+    OR              shift and go to state 73
+
+
+state 71
+
+    (20) ListaInstrucao -> Instrucao SEMICOLON ListaInstrucao .
+
+    END             reduce using rule 20 (ListaInstrucao -> Instrucao SEMICOLON ListaInstrucao .)
+
+
+state 72
+
+    (23) Instrucao -> IF Expr THEN . Instrucao
+    (24) Instrucao -> IF Expr THEN . Instrucao ELSE Instrucao
+    (23) Instrucao -> . IF Expr THEN Instrucao
+    (24) Instrucao -> . IF Expr THEN Instrucao ELSE Instrucao
+    (25) Instrucao -> . Loop
+    (26) Instrucao -> . Atr
+    (27) Instrucao -> . Exec
+    (28) Instrucao -> . WRITE LPAREN ListaExpr RPAREN
+    (29) Instrucao -> . WRITELN LPAREN ListaExpr RPAREN
+    (30) Instrucao -> . WRITELN
+    (31) Instrucao -> . READ LPAREN ListaVariaveis RPAREN
+    (32) Instrucao -> . READLN LPAREN ListaVariaveis RPAREN
+    (33) Loop -> . WHILE Expr DO Instrucao
+    (34) Loop -> . FOR ID ASSIGN Expr TO Expr DO Instrucao
+    (35) Loop -> . FOR ID ASSIGN Expr DOWNTO Expr DO Instrucao
+    (36) Atr -> . ID ASSIGN Expr
+    (37) Atr -> . ID LBRACKET Expr RBRACKET ASSIGN Expr
+    (19) Exec -> . BEGIN ListaInstrucao END
+
+    IF              shift and go to state 21
+    WRITE           shift and go to state 25
+    WRITELN         shift and go to state 26
+    READ            shift and go to state 27
+    READLN          shift and go to state 28
+    WHILE           shift and go to state 29
+    FOR             shift and go to state 30
+    ID              shift and go to state 31
+    BEGIN           shift and go to state 11
+
+    Instrucao                      shift and go to state 103
+    Loop                           shift and go to state 22
+    Atr                            shift and go to state 23
+    Exec                           shift and go to state 24
+
+state 73
+
+    (38) Expr -> Expr OR . TermoAnd
+    (43) TermoAnd -> . TermoAnd AND TermoIgualdade
+    (44) TermoAnd -> . TermoIgualdade
+    (45) TermoIgualdade -> . TermoIgualdade EQUAL TermoRelacional
+    (46) TermoIgualdade -> . TermoIgualdade NOTEQUAL TermoRelacional
+    (47) TermoIgualdade -> . TermoRelacional
+    (48) TermoRelacional -> . TermoRelacional BIGGERTHEN TermoAditivo
+    (49) TermoRelacional -> . TermoRelacional SMALLERTHEN TermoAditivo
+    (50) TermoRelacional -> . TermoRelacional BIGOREQ TermoAditivo
+    (51) TermoRelacional -> . TermoRelacional SMALOREQ TermoAditivo
+    (52) TermoRelacional -> . TermoAditivo
+    (53) TermoAditivo -> . TermoAditivo ADD TermoMultiplicativo
+    (54) TermoAditivo -> . TermoAditivo SUB TermoMultiplicativo
+    (55) TermoAditivo -> . TermoMultiplicativo
+    (56) TermoMultiplicativo -> . TermoMultiplicativo MUL Fator
+    (57) TermoMultiplicativo -> . TermoMultiplicativo DIV Fator
+    (58) TermoMultiplicativo -> . TermoMultiplicativo MOD Fator
+    (59) TermoMultiplicativo -> . Fator
+    (60) Fator -> . ID
+    (61) Fator -> . NUMBER
+    (62) Fator -> . STRING
+    (63) Fator -> . TRUE
+    (64) Fator -> . FALSE
+    (65) Fator -> . LPAREN Expr RPAREN
+    (66) Fator -> . ID LBRACKET Expr RBRACKET
+    (67) Fator -> . ID DOT ID
+    (68) Fator -> . ID LPAREN ID RPAREN
+    (69) Fator -> . CHAR
+
+    ID              shift and go to state 47
+    NUMBER          shift and go to state 48
+    STRING          shift and go to state 49
+    TRUE            shift and go to state 50
+    FALSE           shift and go to state 51
+    LPAREN          shift and go to state 52
+    CHAR            shift and go to state 53
+
+    TermoAnd                       shift and go to state 104
+    TermoIgualdade                 shift and go to state 42
+    TermoRelacional                shift and go to state 43
+    TermoAditivo                   shift and go to state 44
+    TermoMultiplicativo            shift and go to state 45
+    Fator                          shift and go to state 46
+
+state 74
+
+    (43) TermoAnd -> TermoAnd AND . TermoIgualdade
+    (45) TermoIgualdade -> . TermoIgualdade EQUAL TermoRelacional
+    (46) TermoIgualdade -> . TermoIgualdade NOTEQUAL TermoRelacional
+    (47) TermoIgualdade -> . TermoRelacional
+    (48) TermoRelacional -> . TermoRelacional BIGGERTHEN TermoAditivo
+    (49) TermoRelacional -> . TermoRelacional SMALLERTHEN TermoAditivo
+    (50) TermoRelacional -> . TermoRelacional BIGOREQ TermoAditivo
+    (51) TermoRelacional -> . TermoRelacional SMALOREQ TermoAditivo
+    (52) TermoRelacional -> . TermoAditivo
+    (53) TermoAditivo -> . TermoAditivo ADD TermoMultiplicativo
+    (54) TermoAditivo -> . TermoAditivo SUB TermoMultiplicativo
+    (55) TermoAditivo -> . TermoMultiplicativo
+    (56) TermoMultiplicativo -> . TermoMultiplicativo MUL Fator
+    (57) TermoMultiplicativo -> . TermoMultiplicativo DIV Fator
+    (58) TermoMultiplicativo -> . TermoMultiplicativo MOD Fator
+    (59) TermoMultiplicativo -> . Fator
+    (60) Fator -> . ID
+    (61) Fator -> . NUMBER
+    (62) Fator -> . STRING
+    (63) Fator -> . TRUE
+    (64) Fator -> . FALSE
+    (65) Fator -> . LPAREN Expr RPAREN
+    (66) Fator -> . ID LBRACKET Expr RBRACKET
+    (67) Fator -> . ID DOT ID
+    (68) Fator -> . ID LPAREN ID RPAREN
+    (69) Fator -> . CHAR
+
+    ID              shift and go to state 47
+    NUMBER          shift and go to state 48
+    STRING          shift and go to state 49
+    TRUE            shift and go to state 50
+    FALSE           shift and go to state 51
+    LPAREN          shift and go to state 52
+    CHAR            shift and go to state 53
+
+    TermoIgualdade                 shift and go to state 105
+    TermoRelacional                shift and go to state 43
+    TermoAditivo                   shift and go to state 44
+    TermoMultiplicativo            shift and go to state 45
+    Fator                          shift and go to state 46
+
+state 75
+
+    (45) TermoIgualdade -> TermoIgualdade EQUAL . TermoRelacional
+    (48) TermoRelacional -> . TermoRelacional BIGGERTHEN TermoAditivo
+    (49) TermoRelacional -> . TermoRelacional SMALLERTHEN TermoAditivo
+    (50) TermoRelacional -> . TermoRelacional BIGOREQ TermoAditivo
+    (51) TermoRelacional -> . TermoRelacional SMALOREQ TermoAditivo
+    (52) TermoRelacional -> . TermoAditivo
+    (53) TermoAditivo -> . TermoAditivo ADD TermoMultiplicativo
+    (54) TermoAditivo -> . TermoAditivo SUB TermoMultiplicativo
+    (55) TermoAditivo -> . TermoMultiplicativo
+    (56) TermoMultiplicativo -> . TermoMultiplicativo MUL Fator
+    (57) TermoMultiplicativo -> . TermoMultiplicativo DIV Fator
+    (58) TermoMultiplicativo -> . TermoMultiplicativo MOD Fator
+    (59) TermoMultiplicativo -> . Fator
+    (60) Fator -> . ID
+    (61) Fator -> . NUMBER
+    (62) Fator -> . STRING
+    (63) Fator -> . TRUE
+    (64) Fator -> . FALSE
+    (65) Fator -> . LPAREN Expr RPAREN
+    (66) Fator -> . ID LBRACKET Expr RBRACKET
+    (67) Fator -> . ID DOT ID
+    (68) Fator -> . ID LPAREN ID RPAREN
+    (69) Fator -> . CHAR
+
+    ID              shift and go to state 47
+    NUMBER          shift and go to state 48
+    STRING          shift and go to state 49
+    TRUE            shift and go to state 50
+    FALSE           shift and go to state 51
+    LPAREN          shift and go to state 52
+    CHAR            shift and go to state 53
+
+    TermoRelacional                shift and go to state 106
+    TermoAditivo                   shift and go to state 44
+    TermoMultiplicativo            shift and go to state 45
+    Fator                          shift and go to state 46
+
+state 76
+
+    (46) TermoIgualdade -> TermoIgualdade NOTEQUAL . TermoRelacional
+    (48) TermoRelacional -> . TermoRelacional BIGGERTHEN TermoAditivo
+    (49) TermoRelacional -> . TermoRelacional SMALLERTHEN TermoAditivo
+    (50) TermoRelacional -> . TermoRelacional BIGOREQ TermoAditivo
+    (51) TermoRelacional -> . TermoRelacional SMALOREQ TermoAditivo
+    (52) TermoRelacional -> . TermoAditivo
+    (53) TermoAditivo -> . TermoAditivo ADD TermoMultiplicativo
+    (54) TermoAditivo -> . TermoAditivo SUB TermoMultiplicativo
+    (55) TermoAditivo -> . TermoMultiplicativo
+    (56) TermoMultiplicativo -> . TermoMultiplicativo MUL Fator
+    (57) TermoMultiplicativo -> . TermoMultiplicativo DIV Fator
+    (58) TermoMultiplicativo -> . TermoMultiplicativo MOD Fator
+    (59) TermoMultiplicativo -> . Fator
+    (60) Fator -> . ID
+    (61) Fator -> . NUMBER
+    (62) Fator -> . STRING
+    (63) Fator -> . TRUE
+    (64) Fator -> . FALSE
+    (65) Fator -> . LPAREN Expr RPAREN
+    (66) Fator -> . ID LBRACKET Expr RBRACKET
+    (67) Fator -> . ID DOT ID
+    (68) Fator -> . ID LPAREN ID RPAREN
+    (69) Fator -> . CHAR
+
+    ID              shift and go to state 47
+    NUMBER          shift and go to state 48
+    STRING          shift and go to state 49
+    TRUE            shift and go to state 50
+    FALSE           shift and go to state 51
+    LPAREN          shift and go to state 52
+    CHAR            shift and go to state 53
+
+    TermoRelacional                shift and go to state 107
+    TermoAditivo                   shift and go to state 44
+    TermoMultiplicativo            shift and go to state 45
+    Fator                          shift and go to state 46
+
+state 77
+
+    (48) TermoRelacional -> TermoRelacional BIGGERTHEN . TermoAditivo
+    (53) TermoAditivo -> . TermoAditivo ADD TermoMultiplicativo
+    (54) TermoAditivo -> . TermoAditivo SUB TermoMultiplicativo
+    (55) TermoAditivo -> . TermoMultiplicativo
+    (56) TermoMultiplicativo -> . TermoMultiplicativo MUL Fator
+    (57) TermoMultiplicativo -> . TermoMultiplicativo DIV Fator
+    (58) TermoMultiplicativo -> . TermoMultiplicativo MOD Fator
+    (59) TermoMultiplicativo -> . Fator
+    (60) Fator -> . ID
+    (61) Fator -> . NUMBER
+    (62) Fator -> . STRING
+    (63) Fator -> . TRUE
+    (64) Fator -> . FALSE
+    (65) Fator -> . LPAREN Expr RPAREN
+    (66) Fator -> . ID LBRACKET Expr RBRACKET
+    (67) Fator -> . ID DOT ID
+    (68) Fator -> . ID LPAREN ID RPAREN
+    (69) Fator -> . CHAR
+
+    ID              shift and go to state 47
+    NUMBER          shift and go to state 48
+    STRING          shift and go to state 49
+    TRUE            shift and go to state 50
+    FALSE           shift and go to state 51
+    LPAREN          shift and go to state 52
+    CHAR            shift and go to state 53
+
+    TermoAditivo                   shift and go to state 108
+    TermoMultiplicativo            shift and go to state 45
+    Fator                          shift and go to state 46
+
+state 78
+
+    (49) TermoRelacional -> TermoRelacional SMALLERTHEN . TermoAditivo
+    (53) TermoAditivo -> . TermoAditivo ADD TermoMultiplicativo
+    (54) TermoAditivo -> . TermoAditivo SUB TermoMultiplicativo
+    (55) TermoAditivo -> . TermoMultiplicativo
+    (56) TermoMultiplicativo -> . TermoMultiplicativo MUL Fator
+    (57) TermoMultiplicativo -> . TermoMultiplicativo DIV Fator
+    (58) TermoMultiplicativo -> . TermoMultiplicativo MOD Fator
+    (59) TermoMultiplicativo -> . Fator
+    (60) Fator -> . ID
+    (61) Fator -> . NUMBER
+    (62) Fator -> . STRING
+    (63) Fator -> . TRUE
+    (64) Fator -> . FALSE
+    (65) Fator -> . LPAREN Expr RPAREN
+    (66) Fator -> . ID LBRACKET Expr RBRACKET
+    (67) Fator -> . ID DOT ID
+    (68) Fator -> . ID LPAREN ID RPAREN
+    (69) Fator -> . CHAR
+
+    ID              shift and go to state 47
+    NUMBER          shift and go to state 48
+    STRING          shift and go to state 49
+    TRUE            shift and go to state 50
+    FALSE           shift and go to state 51
+    LPAREN          shift and go to state 52
+    CHAR            shift and go to state 53
+
+    TermoAditivo                   shift and go to state 109
+    TermoMultiplicativo            shift and go to state 45
+    Fator                          shift and go to state 46
+
+state 79
+
+    (50) TermoRelacional -> TermoRelacional BIGOREQ . TermoAditivo
+    (53) TermoAditivo -> . TermoAditivo ADD TermoMultiplicativo
+    (54) TermoAditivo -> . TermoAditivo SUB TermoMultiplicativo
+    (55) TermoAditivo -> . TermoMultiplicativo
+    (56) TermoMultiplicativo -> . TermoMultiplicativo MUL Fator
+    (57) TermoMultiplicativo -> . TermoMultiplicativo DIV Fator
+    (58) TermoMultiplicativo -> . TermoMultiplicativo MOD Fator
+    (59) TermoMultiplicativo -> . Fator
+    (60) Fator -> . ID
+    (61) Fator -> . NUMBER
+    (62) Fator -> . STRING
+    (63) Fator -> . TRUE
+    (64) Fator -> . FALSE
+    (65) Fator -> . LPAREN Expr RPAREN
+    (66) Fator -> . ID LBRACKET Expr RBRACKET
+    (67) Fator -> . ID DOT ID
+    (68) Fator -> . ID LPAREN ID RPAREN
+    (69) Fator -> . CHAR
+
+    ID              shift and go to state 47
+    NUMBER          shift and go to state 48
+    STRING          shift and go to state 49
+    TRUE            shift and go to state 50
+    FALSE           shift and go to state 51
+    LPAREN          shift and go to state 52
+    CHAR            shift and go to state 53
+
+    TermoAditivo                   shift and go to state 110
+    TermoMultiplicativo            shift and go to state 45
+    Fator                          shift and go to state 46
+
+state 80
+
+    (51) TermoRelacional -> TermoRelacional SMALOREQ . TermoAditivo
+    (53) TermoAditivo -> . TermoAditivo ADD TermoMultiplicativo
+    (54) TermoAditivo -> . TermoAditivo SUB TermoMultiplicativo
+    (55) TermoAditivo -> . TermoMultiplicativo
+    (56) TermoMultiplicativo -> . TermoMultiplicativo MUL Fator
+    (57) TermoMultiplicativo -> . TermoMultiplicativo DIV Fator
+    (58) TermoMultiplicativo -> . TermoMultiplicativo MOD Fator
+    (59) TermoMultiplicativo -> . Fator
+    (60) Fator -> . ID
+    (61) Fator -> . NUMBER
+    (62) Fator -> . STRING
+    (63) Fator -> . TRUE
+    (64) Fator -> . FALSE
+    (65) Fator -> . LPAREN Expr RPAREN
+    (66) Fator -> . ID LBRACKET Expr RBRACKET
+    (67) Fator -> . ID DOT ID
+    (68) Fator -> . ID LPAREN ID RPAREN
+    (69) Fator -> . CHAR
+
+    ID              shift and go to state 47
+    NUMBER          shift and go to state 48
+    STRING          shift and go to state 49
+    TRUE            shift and go to state 50
+    FALSE           shift and go to state 51
+    LPAREN          shift and go to state 52
+    CHAR            shift and go to state 53
+
+    TermoAditivo                   shift and go to state 111
+    TermoMultiplicativo            shift and go to state 45
+    Fator                          shift and go to state 46
+
+state 81
+
+    (53) TermoAditivo -> TermoAditivo ADD . TermoMultiplicativo
+    (56) TermoMultiplicativo -> . TermoMultiplicativo MUL Fator
+    (57) TermoMultiplicativo -> . TermoMultiplicativo DIV Fator
+    (58) TermoMultiplicativo -> . TermoMultiplicativo MOD Fator
+    (59) TermoMultiplicativo -> . Fator
+    (60) Fator -> . ID
+    (61) Fator -> . NUMBER
+    (62) Fator -> . STRING
+    (63) Fator -> . TRUE
+    (64) Fator -> . FALSE
+    (65) Fator -> . LPAREN Expr RPAREN
+    (66) Fator -> . ID LBRACKET Expr RBRACKET
+    (67) Fator -> . ID DOT ID
+    (68) Fator -> . ID LPAREN ID RPAREN
+    (69) Fator -> . CHAR
+
+    ID              shift and go to state 47
+    NUMBER          shift and go to state 48
+    STRING          shift and go to state 49
+    TRUE            shift and go to state 50
+    FALSE           shift and go to state 51
+    LPAREN          shift and go to state 52
+    CHAR            shift and go to state 53
+
+    TermoMultiplicativo            shift and go to state 112
+    Fator                          shift and go to state 46
+
+state 82
+
+    (54) TermoAditivo -> TermoAditivo SUB . TermoMultiplicativo
+    (56) TermoMultiplicativo -> . TermoMultiplicativo MUL Fator
+    (57) TermoMultiplicativo -> . TermoMultiplicativo DIV Fator
+    (58) TermoMultiplicativo -> . TermoMultiplicativo MOD Fator
+    (59) TermoMultiplicativo -> . Fator
+    (60) Fator -> . ID
+    (61) Fator -> . NUMBER
+    (62) Fator -> . STRING
+    (63) Fator -> . TRUE
+    (64) Fator -> . FALSE
+    (65) Fator -> . LPAREN Expr RPAREN
+    (66) Fator -> . ID LBRACKET Expr RBRACKET
+    (67) Fator -> . ID DOT ID
+    (68) Fator -> . ID LPAREN ID RPAREN
+    (69) Fator -> . CHAR
+
+    ID              shift and go to state 47
+    NUMBER          shift and go to state 48
+    STRING          shift and go to state 49
+    TRUE            shift and go to state 50
+    FALSE           shift and go to state 51
+    LPAREN          shift and go to state 52
+    CHAR            shift and go to state 53
+
+    TermoMultiplicativo            shift and go to state 113
+    Fator                          shift and go to state 46
+
+state 83
+
+    (56) TermoMultiplicativo -> TermoMultiplicativo MUL . Fator
+    (60) Fator -> . ID
+    (61) Fator -> . NUMBER
+    (62) Fator -> . STRING
+    (63) Fator -> . TRUE
+    (64) Fator -> . FALSE
+    (65) Fator -> . LPAREN Expr RPAREN
+    (66) Fator -> . ID LBRACKET Expr RBRACKET
+    (67) Fator -> . ID DOT ID
+    (68) Fator -> . ID LPAREN ID RPAREN
+    (69) Fator -> . CHAR
+
+    ID              shift and go to state 47
+    NUMBER          shift and go to state 48
+    STRING          shift and go to state 49
+    TRUE            shift and go to state 50
+    FALSE           shift and go to state 51
+    LPAREN          shift and go to state 52
+    CHAR            shift and go to state 53
+
+    Fator                          shift and go to state 114
+
+state 84
+
+    (57) TermoMultiplicativo -> TermoMultiplicativo DIV . Fator
+    (60) Fator -> . ID
+    (61) Fator -> . NUMBER
+    (62) Fator -> . STRING
+    (63) Fator -> . TRUE
+    (64) Fator -> . FALSE
+    (65) Fator -> . LPAREN Expr RPAREN
+    (66) Fator -> . ID LBRACKET Expr RBRACKET
+    (67) Fator -> . ID DOT ID
+    (68) Fator -> . ID LPAREN ID RPAREN
+    (69) Fator -> . CHAR
+
+    ID              shift and go to state 47
+    NUMBER          shift and go to state 48
+    STRING          shift and go to state 49
+    TRUE            shift and go to state 50
+    FALSE           shift and go to state 51
+    LPAREN          shift and go to state 52
+    CHAR            shift and go to state 53
+
+    Fator                          shift and go to state 115
+
+state 85
+
+    (58) TermoMultiplicativo -> TermoMultiplicativo MOD . Fator
+    (60) Fator -> . ID
+    (61) Fator -> . NUMBER
+    (62) Fator -> . STRING
+    (63) Fator -> . TRUE
+    (64) Fator -> . FALSE
+    (65) Fator -> . LPAREN Expr RPAREN
+    (66) Fator -> . ID LBRACKET Expr RBRACKET
+    (67) Fator -> . ID DOT ID
+    (68) Fator -> . ID LPAREN ID RPAREN
+    (69) Fator -> . CHAR
+
+    ID              shift and go to state 47
+    NUMBER          shift and go to state 48
+    STRING          shift and go to state 49
+    TRUE            shift and go to state 50
+    FALSE           shift and go to state 51
+    LPAREN          shift and go to state 52
+    CHAR            shift and go to state 53
+
+    Fator                          shift and go to state 116
+
+state 86
+
+    (66) Fator -> ID LBRACKET . Expr RBRACKET
+    (38) Expr -> . Expr OR TermoAnd
+    (39) Expr -> . TermoAnd
+    (43) TermoAnd -> . TermoAnd AND TermoIgualdade
+    (44) TermoAnd -> . TermoIgualdade
+    (45) TermoIgualdade -> . TermoIgualdade EQUAL TermoRelacional
+    (46) TermoIgualdade -> . TermoIgualdade NOTEQUAL TermoRelacional
+    (47) TermoIgualdade -> . TermoRelacional
+    (48) TermoRelacional -> . TermoRelacional BIGGERTHEN TermoAditivo
+    (49) TermoRelacional -> . TermoRelacional SMALLERTHEN TermoAditivo
+    (50) TermoRelacional -> . TermoRelacional BIGOREQ TermoAditivo
+    (51) TermoRelacional -> . TermoRelacional SMALOREQ TermoAditivo
+    (52) TermoRelacional -> . TermoAditivo
+    (53) TermoAditivo -> . TermoAditivo ADD TermoMultiplicativo
+    (54) TermoAditivo -> . TermoAditivo SUB TermoMultiplicativo
+    (55) TermoAditivo -> . TermoMultiplicativo
+    (56) TermoMultiplicativo -> . TermoMultiplicativo MUL Fator
+    (57) TermoMultiplicativo -> . TermoMultiplicativo DIV Fator
+    (58) TermoMultiplicativo -> . TermoMultiplicativo MOD Fator
+    (59) TermoMultiplicativo -> . Fator
+    (60) Fator -> . ID
+    (61) Fator -> . NUMBER
+    (62) Fator -> . STRING
+    (63) Fator -> . TRUE
+    (64) Fator -> . FALSE
+    (65) Fator -> . LPAREN Expr RPAREN
+    (66) Fator -> . ID LBRACKET Expr RBRACKET
+    (67) Fator -> . ID DOT ID
+    (68) Fator -> . ID LPAREN ID RPAREN
+    (69) Fator -> . CHAR
+
+    ID              shift and go to state 47
+    NUMBER          shift and go to state 48
+    STRING          shift and go to state 49
+    TRUE            shift and go to state 50
+    FALSE           shift and go to state 51
+    LPAREN          shift and go to state 52
+    CHAR            shift and go to state 53
+
+    Expr                           shift and go to state 117
+    TermoAnd                       shift and go to state 41
+    TermoIgualdade                 shift and go to state 42
+    TermoRelacional                shift and go to state 43
+    TermoAditivo                   shift and go to state 44
+    TermoMultiplicativo            shift and go to state 45
+    Fator                          shift and go to state 46
+
+state 87
+
+    (67) Fator -> ID DOT . ID
+
+    ID              shift and go to state 118
+
+
+state 88
+
+    (68) Fator -> ID LPAREN . ID RPAREN
+
+    ID              shift and go to state 119
+
+
+state 89
+
+    (65) Fator -> LPAREN Expr . RPAREN
+    (38) Expr -> Expr . OR TermoAnd
+
+    RPAREN          shift and go to state 120
+    OR              shift and go to state 73
+
+
+state 90
+
+    (28) Instrucao -> WRITE LPAREN ListaExpr . RPAREN
+
+    RPAREN          shift and go to state 121
+
+
+state 91
+
+    (40) ListaExpr -> Expr . ListaExprTail
+    (38) Expr -> Expr . OR TermoAnd
+    (41) ListaExprTail -> . COMMA Expr ListaExprTail
+    (42) ListaExprTail -> . empty
+    (74) empty -> .
+
+    OR              shift and go to state 73
+    COMMA           shift and go to state 123
+    RPAREN          reduce using rule 74 (empty -> .)
+
+    ListaExprTail                  shift and go to state 122
+    empty                          shift and go to state 124
+
+state 92
+
+    (29) Instrucao -> WRITELN LPAREN ListaExpr . RPAREN
+
+    RPAREN          shift and go to state 125
+
+
+state 93
+
+    (31) Instrucao -> READ LPAREN ListaVariaveis . RPAREN
+
+    RPAREN          shift and go to state 126
+
+
+state 94
+
+    (32) Instrucao -> READLN LPAREN ListaVariaveis . RPAREN
+
+    RPAREN          shift and go to state 127
+
+
+state 95
+
+    (33) Loop -> WHILE Expr DO . Instrucao
+    (23) Instrucao -> . IF Expr THEN Instrucao
+    (24) Instrucao -> . IF Expr THEN Instrucao ELSE Instrucao
+    (25) Instrucao -> . Loop
+    (26) Instrucao -> . Atr
+    (27) Instrucao -> . Exec
+    (28) Instrucao -> . WRITE LPAREN ListaExpr RPAREN
+    (29) Instrucao -> . WRITELN LPAREN ListaExpr RPAREN
+    (30) Instrucao -> . WRITELN
+    (31) Instrucao -> . READ LPAREN ListaVariaveis RPAREN
+    (32) Instrucao -> . READLN LPAREN ListaVariaveis RPAREN
+    (33) Loop -> . WHILE Expr DO Instrucao
+    (34) Loop -> . FOR ID ASSIGN Expr TO Expr DO Instrucao
+    (35) Loop -> . FOR ID ASSIGN Expr DOWNTO Expr DO Instrucao
+    (36) Atr -> . ID ASSIGN Expr
+    (37) Atr -> . ID LBRACKET Expr RBRACKET ASSIGN Expr
+    (19) Exec -> . BEGIN ListaInstrucao END
+
+    IF              shift and go to state 21
+    WRITE           shift and go to state 25
+    WRITELN         shift and go to state 26
+    READ            shift and go to state 27
+    READLN          shift and go to state 28
+    WHILE           shift and go to state 29
+    FOR             shift and go to state 30
+    ID              shift and go to state 31
+    BEGIN           shift and go to state 11
+
+    Instrucao                      shift and go to state 128
+    Loop                           shift and go to state 22
+    Atr                            shift and go to state 23
+    Exec                           shift and go to state 24
+
+state 96
+
+    (34) Loop -> FOR ID ASSIGN . Expr TO Expr DO Instrucao
+    (35) Loop -> FOR ID ASSIGN . Expr DOWNTO Expr DO Instrucao
+    (38) Expr -> . Expr OR TermoAnd
+    (39) Expr -> . TermoAnd
+    (43) TermoAnd -> . TermoAnd AND TermoIgualdade
+    (44) TermoAnd -> . TermoIgualdade
+    (45) TermoIgualdade -> . TermoIgualdade EQUAL TermoRelacional
+    (46) TermoIgualdade -> . TermoIgualdade NOTEQUAL TermoRelacional
+    (47) TermoIgualdade -> . TermoRelacional
+    (48) TermoRelacional -> . TermoRelacional BIGGERTHEN TermoAditivo
+    (49) TermoRelacional -> . TermoRelacional SMALLERTHEN TermoAditivo
+    (50) TermoRelacional -> . TermoRelacional BIGOREQ TermoAditivo
+    (51) TermoRelacional -> . TermoRelacional SMALOREQ TermoAditivo
+    (52) TermoRelacional -> . TermoAditivo
+    (53) TermoAditivo -> . TermoAditivo ADD TermoMultiplicativo
+    (54) TermoAditivo -> . TermoAditivo SUB TermoMultiplicativo
+    (55) TermoAditivo -> . TermoMultiplicativo
+    (56) TermoMultiplicativo -> . TermoMultiplicativo MUL Fator
+    (57) TermoMultiplicativo -> . TermoMultiplicativo DIV Fator
+    (58) TermoMultiplicativo -> . TermoMultiplicativo MOD Fator
+    (59) TermoMultiplicativo -> . Fator
+    (60) Fator -> . ID
+    (61) Fator -> . NUMBER
+    (62) Fator -> . STRING
+    (63) Fator -> . TRUE
+    (64) Fator -> . FALSE
+    (65) Fator -> . LPAREN Expr RPAREN
+    (66) Fator -> . ID LBRACKET Expr RBRACKET
+    (67) Fator -> . ID DOT ID
+    (68) Fator -> . ID LPAREN ID RPAREN
+    (69) Fator -> . CHAR
+
+    ID              shift and go to state 47
+    NUMBER          shift and go to state 48
+    STRING          shift and go to state 49
+    TRUE            shift and go to state 50
+    FALSE           shift and go to state 51
+    LPAREN          shift and go to state 52
+    CHAR            shift and go to state 53
+
+    Expr                           shift and go to state 129
+    TermoAnd                       shift and go to state 41
+    TermoIgualdade                 shift and go to state 42
+    TermoRelacional                shift and go to state 43
+    TermoAditivo                   shift and go to state 44
+    TermoMultiplicativo            shift and go to state 45
+    Fator                          shift and go to state 46
+
+state 97
+
+    (36) Atr -> ID ASSIGN Expr .
+    (38) Expr -> Expr . OR TermoAnd
+
+    SEMICOLON       reduce using rule 36 (Atr -> ID ASSIGN Expr .)
+    END             reduce using rule 36 (Atr -> ID ASSIGN Expr .)
+    ELSE            reduce using rule 36 (Atr -> ID ASSIGN Expr .)
+    OR              shift and go to state 73
+
+
+state 98
+
+    (37) Atr -> ID LBRACKET Expr . RBRACKET ASSIGN Expr
+    (38) Expr -> Expr . OR TermoAnd
+
+    RBRACKET        shift and go to state 130
+    OR              shift and go to state 73
+
+
+state 99
+
+    (7) DeclVar -> ListaVariaveis COLON Tipo SEMICOLON .
+
+    ID              reduce using rule 7 (DeclVar -> ListaVariaveis COLON Tipo SEMICOLON .)
+    BEGIN           reduce using rule 7 (DeclVar -> ListaVariaveis COLON Tipo SEMICOLON .)
+
+
+state 100
+
+    (18) Tipo -> ARRAY LBRACKET . NUMBER DOTDOT NUMBER RBRACKET OF Tipo
+
+    NUMBER          shift and go to state 131
+
+
+state 101
+
+    (11) ListaVariaveisTail -> COMMA Variavel ListaVariaveisTail .
+
+    COLON           reduce using rule 11 (ListaVariaveisTail -> COMMA Variavel ListaVariaveisTail .)
+    RPAREN          reduce using rule 11 (ListaVariaveisTail -> COMMA Variavel ListaVariaveisTail .)
+
+
+state 102
+
+    (8) Variavel -> ID LBRACKET Expr RBRACKET .
+
+    COMMA           reduce using rule 8 (Variavel -> ID LBRACKET Expr RBRACKET .)
+    COLON           reduce using rule 8 (Variavel -> ID LBRACKET Expr RBRACKET .)
+    RPAREN          reduce using rule 8 (Variavel -> ID LBRACKET Expr RBRACKET .)
+
+
+state 103
+
+    (23) Instrucao -> IF Expr THEN Instrucao .
+    (24) Instrucao -> IF Expr THEN Instrucao . ELSE Instrucao
+
+  ! shift/reduce conflict for ELSE resolved as shift
+    SEMICOLON       reduce using rule 23 (Instrucao -> IF Expr THEN Instrucao .)
+    END             reduce using rule 23 (Instrucao -> IF Expr THEN Instrucao .)
+    ELSE            shift and go to state 132
+
+  ! ELSE            [ reduce using rule 23 (Instrucao -> IF Expr THEN Instrucao .) ]
+
+
+state 104
+
+    (38) Expr -> Expr OR TermoAnd .
+    (43) TermoAnd -> TermoAnd . AND TermoIgualdade
+
+    THEN            reduce using rule 38 (Expr -> Expr OR TermoAnd .)
+    OR              reduce using rule 38 (Expr -> Expr OR TermoAnd .)
+    DO              reduce using rule 38 (Expr -> Expr OR TermoAnd .)
+    RBRACKET        reduce using rule 38 (Expr -> Expr OR TermoAnd .)
+    RPAREN          reduce using rule 38 (Expr -> Expr OR TermoAnd .)
+    COMMA           reduce using rule 38 (Expr -> Expr OR TermoAnd .)
+    SEMICOLON       reduce using rule 38 (Expr -> Expr OR TermoAnd .)
+    END             reduce using rule 38 (Expr -> Expr OR TermoAnd .)
+    ELSE            reduce using rule 38 (Expr -> Expr OR TermoAnd .)
+    TO              reduce using rule 38 (Expr -> Expr OR TermoAnd .)
+    DOWNTO          reduce using rule 38 (Expr -> Expr OR TermoAnd .)
+    AND             shift and go to state 74
+
+
+state 105
+
+    (43) TermoAnd -> TermoAnd AND TermoIgualdade .
+    (45) TermoIgualdade -> TermoIgualdade . EQUAL TermoRelacional
+    (46) TermoIgualdade -> TermoIgualdade . NOTEQUAL TermoRelacional
+
+    AND             reduce using rule 43 (TermoAnd -> TermoAnd AND TermoIgualdade .)
+    THEN            reduce using rule 43 (TermoAnd -> TermoAnd AND TermoIgualdade .)
+    OR              reduce using rule 43 (TermoAnd -> TermoAnd AND TermoIgualdade .)
+    DO              reduce using rule 43 (TermoAnd -> TermoAnd AND TermoIgualdade .)
+    RBRACKET        reduce using rule 43 (TermoAnd -> TermoAnd AND TermoIgualdade .)
+    RPAREN          reduce using rule 43 (TermoAnd -> TermoAnd AND TermoIgualdade .)
+    COMMA           reduce using rule 43 (TermoAnd -> TermoAnd AND TermoIgualdade .)
+    SEMICOLON       reduce using rule 43 (TermoAnd -> TermoAnd AND TermoIgualdade .)
+    END             reduce using rule 43 (TermoAnd -> TermoAnd AND TermoIgualdade .)
+    ELSE            reduce using rule 43 (TermoAnd -> TermoAnd AND TermoIgualdade .)
+    TO              reduce using rule 43 (TermoAnd -> TermoAnd AND TermoIgualdade .)
+    DOWNTO          reduce using rule 43 (TermoAnd -> TermoAnd AND TermoIgualdade .)
+    EQUAL           shift and go to state 75
+    NOTEQUAL        shift and go to state 76
+
+
+state 106
+
+    (45) TermoIgualdade -> TermoIgualdade EQUAL TermoRelacional .
+    (48) TermoRelacional -> TermoRelacional . BIGGERTHEN TermoAditivo
+    (49) TermoRelacional -> TermoRelacional . SMALLERTHEN TermoAditivo
+    (50) TermoRelacional -> TermoRelacional . BIGOREQ TermoAditivo
+    (51) TermoRelacional -> TermoRelacional . SMALOREQ TermoAditivo
+
+    EQUAL           reduce using rule 45 (TermoIgualdade -> TermoIgualdade EQUAL TermoRelacional .)
+    NOTEQUAL        reduce using rule 45 (TermoIgualdade -> TermoIgualdade EQUAL TermoRelacional .)
+    AND             reduce using rule 45 (TermoIgualdade -> TermoIgualdade EQUAL TermoRelacional .)
+    THEN            reduce using rule 45 (TermoIgualdade -> TermoIgualdade EQUAL TermoRelacional .)
+    OR              reduce using rule 45 (TermoIgualdade -> TermoIgualdade EQUAL TermoRelacional .)
+    DO              reduce using rule 45 (TermoIgualdade -> TermoIgualdade EQUAL TermoRelacional .)
+    RBRACKET        reduce using rule 45 (TermoIgualdade -> TermoIgualdade EQUAL TermoRelacional .)
+    RPAREN          reduce using rule 45 (TermoIgualdade -> TermoIgualdade EQUAL TermoRelacional .)
+    COMMA           reduce using rule 45 (TermoIgualdade -> TermoIgualdade EQUAL TermoRelacional .)
+    SEMICOLON       reduce using rule 45 (TermoIgualdade -> TermoIgualdade EQUAL TermoRelacional .)
+    END             reduce using rule 45 (TermoIgualdade -> TermoIgualdade EQUAL TermoRelacional .)
+    ELSE            reduce using rule 45 (TermoIgualdade -> TermoIgualdade EQUAL TermoRelacional .)
+    TO              reduce using rule 45 (TermoIgualdade -> TermoIgualdade EQUAL TermoRelacional .)
+    DOWNTO          reduce using rule 45 (TermoIgualdade -> TermoIgualdade EQUAL TermoRelacional .)
+    BIGGERTHEN      shift and go to state 77
+    SMALLERTHEN     shift and go to state 78
+    BIGOREQ         shift and go to state 79
+    SMALOREQ        shift and go to state 80
+
+
+state 107
+
+    (46) TermoIgualdade -> TermoIgualdade NOTEQUAL TermoRelacional .
+    (48) TermoRelacional -> TermoRelacional . BIGGERTHEN TermoAditivo
+    (49) TermoRelacional -> TermoRelacional . SMALLERTHEN TermoAditivo
+    (50) TermoRelacional -> TermoRelacional . BIGOREQ TermoAditivo
+    (51) TermoRelacional -> TermoRelacional . SMALOREQ TermoAditivo
+
+    EQUAL           reduce using rule 46 (TermoIgualdade -> TermoIgualdade NOTEQUAL TermoRelacional .)
+    NOTEQUAL        reduce using rule 46 (TermoIgualdade -> TermoIgualdade NOTEQUAL TermoRelacional .)
+    AND             reduce using rule 46 (TermoIgualdade -> TermoIgualdade NOTEQUAL TermoRelacional .)
+    THEN            reduce using rule 46 (TermoIgualdade -> TermoIgualdade NOTEQUAL TermoRelacional .)
+    OR              reduce using rule 46 (TermoIgualdade -> TermoIgualdade NOTEQUAL TermoRelacional .)
+    DO              reduce using rule 46 (TermoIgualdade -> TermoIgualdade NOTEQUAL TermoRelacional .)
+    RBRACKET        reduce using rule 46 (TermoIgualdade -> TermoIgualdade NOTEQUAL TermoRelacional .)
+    RPAREN          reduce using rule 46 (TermoIgualdade -> TermoIgualdade NOTEQUAL TermoRelacional .)
+    COMMA           reduce using rule 46 (TermoIgualdade -> TermoIgualdade NOTEQUAL TermoRelacional .)
+    SEMICOLON       reduce using rule 46 (TermoIgualdade -> TermoIgualdade NOTEQUAL TermoRelacional .)
+    END             reduce using rule 46 (TermoIgualdade -> TermoIgualdade NOTEQUAL TermoRelacional .)
+    ELSE            reduce using rule 46 (TermoIgualdade -> TermoIgualdade NOTEQUAL TermoRelacional .)
+    TO              reduce using rule 46 (TermoIgualdade -> TermoIgualdade NOTEQUAL TermoRelacional .)
+    DOWNTO          reduce using rule 46 (TermoIgualdade -> TermoIgualdade NOTEQUAL TermoRelacional .)
+    BIGGERTHEN      shift and go to state 77
+    SMALLERTHEN     shift and go to state 78
+    BIGOREQ         shift and go to state 79
+    SMALOREQ        shift and go to state 80
+
+
+state 108
+
+    (48) TermoRelacional -> TermoRelacional BIGGERTHEN TermoAditivo .
+    (53) TermoAditivo -> TermoAditivo . ADD TermoMultiplicativo
+    (54) TermoAditivo -> TermoAditivo . SUB TermoMultiplicativo
+
+    BIGGERTHEN      reduce using rule 48 (TermoRelacional -> TermoRelacional BIGGERTHEN TermoAditivo .)
+    SMALLERTHEN     reduce using rule 48 (TermoRelacional -> TermoRelacional BIGGERTHEN TermoAditivo .)
+    BIGOREQ         reduce using rule 48 (TermoRelacional -> TermoRelacional BIGGERTHEN TermoAditivo .)
+    SMALOREQ        reduce using rule 48 (TermoRelacional -> TermoRelacional BIGGERTHEN TermoAditivo .)
+    EQUAL           reduce using rule 48 (TermoRelacional -> TermoRelacional BIGGERTHEN TermoAditivo .)
+    NOTEQUAL        reduce using rule 48 (TermoRelacional -> TermoRelacional BIGGERTHEN TermoAditivo .)
+    AND             reduce using rule 48 (TermoRelacional -> TermoRelacional BIGGERTHEN TermoAditivo .)
+    THEN            reduce using rule 48 (TermoRelacional -> TermoRelacional BIGGERTHEN TermoAditivo .)
+    OR              reduce using rule 48 (TermoRelacional -> TermoRelacional BIGGERTHEN TermoAditivo .)
+    DO              reduce using rule 48 (TermoRelacional -> TermoRelacional BIGGERTHEN TermoAditivo .)
+    RBRACKET        reduce using rule 48 (TermoRelacional -> TermoRelacional BIGGERTHEN TermoAditivo .)
+    RPAREN          reduce using rule 48 (TermoRelacional -> TermoRelacional BIGGERTHEN TermoAditivo .)
+    COMMA           reduce using rule 48 (TermoRelacional -> TermoRelacional BIGGERTHEN TermoAditivo .)
+    SEMICOLON       reduce using rule 48 (TermoRelacional -> TermoRelacional BIGGERTHEN TermoAditivo .)
+    END             reduce using rule 48 (TermoRelacional -> TermoRelacional BIGGERTHEN TermoAditivo .)
+    ELSE            reduce using rule 48 (TermoRelacional -> TermoRelacional BIGGERTHEN TermoAditivo .)
+    TO              reduce using rule 48 (TermoRelacional -> TermoRelacional BIGGERTHEN TermoAditivo .)
+    DOWNTO          reduce using rule 48 (TermoRelacional -> TermoRelacional BIGGERTHEN TermoAditivo .)
+    ADD             shift and go to state 81
+    SUB             shift and go to state 82
+
+
+state 109
+
+    (49) TermoRelacional -> TermoRelacional SMALLERTHEN TermoAditivo .
+    (53) TermoAditivo -> TermoAditivo . ADD TermoMultiplicativo
+    (54) TermoAditivo -> TermoAditivo . SUB TermoMultiplicativo
+
+    BIGGERTHEN      reduce using rule 49 (TermoRelacional -> TermoRelacional SMALLERTHEN TermoAditivo .)
+    SMALLERTHEN     reduce using rule 49 (TermoRelacional -> TermoRelacional SMALLERTHEN TermoAditivo .)
+    BIGOREQ         reduce using rule 49 (TermoRelacional -> TermoRelacional SMALLERTHEN TermoAditivo .)
+    SMALOREQ        reduce using rule 49 (TermoRelacional -> TermoRelacional SMALLERTHEN TermoAditivo .)
+    EQUAL           reduce using rule 49 (TermoRelacional -> TermoRelacional SMALLERTHEN TermoAditivo .)
+    NOTEQUAL        reduce using rule 49 (TermoRelacional -> TermoRelacional SMALLERTHEN TermoAditivo .)
+    AND             reduce using rule 49 (TermoRelacional -> TermoRelacional SMALLERTHEN TermoAditivo .)
+    THEN            reduce using rule 49 (TermoRelacional -> TermoRelacional SMALLERTHEN TermoAditivo .)
+    OR              reduce using rule 49 (TermoRelacional -> TermoRelacional SMALLERTHEN TermoAditivo .)
+    DO              reduce using rule 49 (TermoRelacional -> TermoRelacional SMALLERTHEN TermoAditivo .)
+    RBRACKET        reduce using rule 49 (TermoRelacional -> TermoRelacional SMALLERTHEN TermoAditivo .)
+    RPAREN          reduce using rule 49 (TermoRelacional -> TermoRelacional SMALLERTHEN TermoAditivo .)
+    COMMA           reduce using rule 49 (TermoRelacional -> TermoRelacional SMALLERTHEN TermoAditivo .)
+    SEMICOLON       reduce using rule 49 (TermoRelacional -> TermoRelacional SMALLERTHEN TermoAditivo .)
+    END             reduce using rule 49 (TermoRelacional -> TermoRelacional SMALLERTHEN TermoAditivo .)
+    ELSE            reduce using rule 49 (TermoRelacional -> TermoRelacional SMALLERTHEN TermoAditivo .)
+    TO              reduce using rule 49 (TermoRelacional -> TermoRelacional SMALLERTHEN TermoAditivo .)
+    DOWNTO          reduce using rule 49 (TermoRelacional -> TermoRelacional SMALLERTHEN TermoAditivo .)
+    ADD             shift and go to state 81
+    SUB             shift and go to state 82
+
+
+state 110
+
+    (50) TermoRelacional -> TermoRelacional BIGOREQ TermoAditivo .
+    (53) TermoAditivo -> TermoAditivo . ADD TermoMultiplicativo
+    (54) TermoAditivo -> TermoAditivo . SUB TermoMultiplicativo
+
+    BIGGERTHEN      reduce using rule 50 (TermoRelacional -> TermoRelacional BIGOREQ TermoAditivo .)
+    SMALLERTHEN     reduce using rule 50 (TermoRelacional -> TermoRelacional BIGOREQ TermoAditivo .)
+    BIGOREQ         reduce using rule 50 (TermoRelacional -> TermoRelacional BIGOREQ TermoAditivo .)
+    SMALOREQ        reduce using rule 50 (TermoRelacional -> TermoRelacional BIGOREQ TermoAditivo .)
+    EQUAL           reduce using rule 50 (TermoRelacional -> TermoRelacional BIGOREQ TermoAditivo .)
+    NOTEQUAL        reduce using rule 50 (TermoRelacional -> TermoRelacional BIGOREQ TermoAditivo .)
+    AND             reduce using rule 50 (TermoRelacional -> TermoRelacional BIGOREQ TermoAditivo .)
+    THEN            reduce using rule 50 (TermoRelacional -> TermoRelacional BIGOREQ TermoAditivo .)
+    OR              reduce using rule 50 (TermoRelacional -> TermoRelacional BIGOREQ TermoAditivo .)
+    DO              reduce using rule 50 (TermoRelacional -> TermoRelacional BIGOREQ TermoAditivo .)
+    RBRACKET        reduce using rule 50 (TermoRelacional -> TermoRelacional BIGOREQ TermoAditivo .)
+    RPAREN          reduce using rule 50 (TermoRelacional -> TermoRelacional BIGOREQ TermoAditivo .)
+    COMMA           reduce using rule 50 (TermoRelacional -> TermoRelacional BIGOREQ TermoAditivo .)
+    SEMICOLON       reduce using rule 50 (TermoRelacional -> TermoRelacional BIGOREQ TermoAditivo .)
+    END             reduce using rule 50 (TermoRelacional -> TermoRelacional BIGOREQ TermoAditivo .)
+    ELSE            reduce using rule 50 (TermoRelacional -> TermoRelacional BIGOREQ TermoAditivo .)
+    TO              reduce using rule 50 (TermoRelacional -> TermoRelacional BIGOREQ TermoAditivo .)
+    DOWNTO          reduce using rule 50 (TermoRelacional -> TermoRelacional BIGOREQ TermoAditivo .)
+    ADD             shift and go to state 81
+    SUB             shift and go to state 82
+
+
+state 111
+
+    (51) TermoRelacional -> TermoRelacional SMALOREQ TermoAditivo .
+    (53) TermoAditivo -> TermoAditivo . ADD TermoMultiplicativo
+    (54) TermoAditivo -> TermoAditivo . SUB TermoMultiplicativo
+
+    BIGGERTHEN      reduce using rule 51 (TermoRelacional -> TermoRelacional SMALOREQ TermoAditivo .)
+    SMALLERTHEN     reduce using rule 51 (TermoRelacional -> TermoRelacional SMALOREQ TermoAditivo .)
+    BIGOREQ         reduce using rule 51 (TermoRelacional -> TermoRelacional SMALOREQ TermoAditivo .)
+    SMALOREQ        reduce using rule 51 (TermoRelacional -> TermoRelacional SMALOREQ TermoAditivo .)
+    EQUAL           reduce using rule 51 (TermoRelacional -> TermoRelacional SMALOREQ TermoAditivo .)
+    NOTEQUAL        reduce using rule 51 (TermoRelacional -> TermoRelacional SMALOREQ TermoAditivo .)
+    AND             reduce using rule 51 (TermoRelacional -> TermoRelacional SMALOREQ TermoAditivo .)
+    THEN            reduce using rule 51 (TermoRelacional -> TermoRelacional SMALOREQ TermoAditivo .)
+    OR              reduce using rule 51 (TermoRelacional -> TermoRelacional SMALOREQ TermoAditivo .)
+    DO              reduce using rule 51 (TermoRelacional -> TermoRelacional SMALOREQ TermoAditivo .)
+    RBRACKET        reduce using rule 51 (TermoRelacional -> TermoRelacional SMALOREQ TermoAditivo .)
+    RPAREN          reduce using rule 51 (TermoRelacional -> TermoRelacional SMALOREQ TermoAditivo .)
+    COMMA           reduce using rule 51 (TermoRelacional -> TermoRelacional SMALOREQ TermoAditivo .)
+    SEMICOLON       reduce using rule 51 (TermoRelacional -> TermoRelacional SMALOREQ TermoAditivo .)
+    END             reduce using rule 51 (TermoRelacional -> TermoRelacional SMALOREQ TermoAditivo .)
+    ELSE            reduce using rule 51 (TermoRelacional -> TermoRelacional SMALOREQ TermoAditivo .)
+    TO              reduce using rule 51 (TermoRelacional -> TermoRelacional SMALOREQ TermoAditivo .)
+    DOWNTO          reduce using rule 51 (TermoRelacional -> TermoRelacional SMALOREQ TermoAditivo .)
+    ADD             shift and go to state 81
+    SUB             shift and go to state 82
+
+
+state 112
+
+    (53) TermoAditivo -> TermoAditivo ADD TermoMultiplicativo .
+    (56) TermoMultiplicativo -> TermoMultiplicativo . MUL Fator
+    (57) TermoMultiplicativo -> TermoMultiplicativo . DIV Fator
+    (58) TermoMultiplicativo -> TermoMultiplicativo . MOD Fator
+
+    ADD             reduce using rule 53 (TermoAditivo -> TermoAditivo ADD TermoMultiplicativo .)
+    SUB             reduce using rule 53 (TermoAditivo -> TermoAditivo ADD TermoMultiplicativo .)
+    BIGGERTHEN      reduce using rule 53 (TermoAditivo -> TermoAditivo ADD TermoMultiplicativo .)
+    SMALLERTHEN     reduce using rule 53 (TermoAditivo -> TermoAditivo ADD TermoMultiplicativo .)
+    BIGOREQ         reduce using rule 53 (TermoAditivo -> TermoAditivo ADD TermoMultiplicativo .)
+    SMALOREQ        reduce using rule 53 (TermoAditivo -> TermoAditivo ADD TermoMultiplicativo .)
+    EQUAL           reduce using rule 53 (TermoAditivo -> TermoAditivo ADD TermoMultiplicativo .)
+    NOTEQUAL        reduce using rule 53 (TermoAditivo -> TermoAditivo ADD TermoMultiplicativo .)
+    AND             reduce using rule 53 (TermoAditivo -> TermoAditivo ADD TermoMultiplicativo .)
+    THEN            reduce using rule 53 (TermoAditivo -> TermoAditivo ADD TermoMultiplicativo .)
+    OR              reduce using rule 53 (TermoAditivo -> TermoAditivo ADD TermoMultiplicativo .)
+    DO              reduce using rule 53 (TermoAditivo -> TermoAditivo ADD TermoMultiplicativo .)
+    RBRACKET        reduce using rule 53 (TermoAditivo -> TermoAditivo ADD TermoMultiplicativo .)
+    RPAREN          reduce using rule 53 (TermoAditivo -> TermoAditivo ADD TermoMultiplicativo .)
+    COMMA           reduce using rule 53 (TermoAditivo -> TermoAditivo ADD TermoMultiplicativo .)
+    SEMICOLON       reduce using rule 53 (TermoAditivo -> TermoAditivo ADD TermoMultiplicativo .)
+    END             reduce using rule 53 (TermoAditivo -> TermoAditivo ADD TermoMultiplicativo .)
+    ELSE            reduce using rule 53 (TermoAditivo -> TermoAditivo ADD TermoMultiplicativo .)
+    TO              reduce using rule 53 (TermoAditivo -> TermoAditivo ADD TermoMultiplicativo .)
+    DOWNTO          reduce using rule 53 (TermoAditivo -> TermoAditivo ADD TermoMultiplicativo .)
+    MUL             shift and go to state 83
+    DIV             shift and go to state 84
+    MOD             shift and go to state 85
+
+
+state 113
+
+    (54) TermoAditivo -> TermoAditivo SUB TermoMultiplicativo .
+    (56) TermoMultiplicativo -> TermoMultiplicativo . MUL Fator
+    (57) TermoMultiplicativo -> TermoMultiplicativo . DIV Fator
+    (58) TermoMultiplicativo -> TermoMultiplicativo . MOD Fator
+
+    ADD             reduce using rule 54 (TermoAditivo -> TermoAditivo SUB TermoMultiplicativo .)
+    SUB             reduce using rule 54 (TermoAditivo -> TermoAditivo SUB TermoMultiplicativo .)
+    BIGGERTHEN      reduce using rule 54 (TermoAditivo -> TermoAditivo SUB TermoMultiplicativo .)
+    SMALLERTHEN     reduce using rule 54 (TermoAditivo -> TermoAditivo SUB TermoMultiplicativo .)
+    BIGOREQ         reduce using rule 54 (TermoAditivo -> TermoAditivo SUB TermoMultiplicativo .)
+    SMALOREQ        reduce using rule 54 (TermoAditivo -> TermoAditivo SUB TermoMultiplicativo .)
+    EQUAL           reduce using rule 54 (TermoAditivo -> TermoAditivo SUB TermoMultiplicativo .)
+    NOTEQUAL        reduce using rule 54 (TermoAditivo -> TermoAditivo SUB TermoMultiplicativo .)
+    AND             reduce using rule 54 (TermoAditivo -> TermoAditivo SUB TermoMultiplicativo .)
+    THEN            reduce using rule 54 (TermoAditivo -> TermoAditivo SUB TermoMultiplicativo .)
+    OR              reduce using rule 54 (TermoAditivo -> TermoAditivo SUB TermoMultiplicativo .)
+    DO              reduce using rule 54 (TermoAditivo -> TermoAditivo SUB TermoMultiplicativo .)
+    RBRACKET        reduce using rule 54 (TermoAditivo -> TermoAditivo SUB TermoMultiplicativo .)
+    RPAREN          reduce using rule 54 (TermoAditivo -> TermoAditivo SUB TermoMultiplicativo .)
+    COMMA           reduce using rule 54 (TermoAditivo -> TermoAditivo SUB TermoMultiplicativo .)
+    SEMICOLON       reduce using rule 54 (TermoAditivo -> TermoAditivo SUB TermoMultiplicativo .)
+    END             reduce using rule 54 (TermoAditivo -> TermoAditivo SUB TermoMultiplicativo .)
+    ELSE            reduce using rule 54 (TermoAditivo -> TermoAditivo SUB TermoMultiplicativo .)
+    TO              reduce using rule 54 (TermoAditivo -> TermoAditivo SUB TermoMultiplicativo .)
+    DOWNTO          reduce using rule 54 (TermoAditivo -> TermoAditivo SUB TermoMultiplicativo .)
+    MUL             shift and go to state 83
+    DIV             shift and go to state 84
+    MOD             shift and go to state 85
+
+
+state 114
+
+    (56) TermoMultiplicativo -> TermoMultiplicativo MUL Fator .
+
+    MUL             reduce using rule 56 (TermoMultiplicativo -> TermoMultiplicativo MUL Fator .)
+    DIV             reduce using rule 56 (TermoMultiplicativo -> TermoMultiplicativo MUL Fator .)
+    MOD             reduce using rule 56 (TermoMultiplicativo -> TermoMultiplicativo MUL Fator .)
+    ADD             reduce using rule 56 (TermoMultiplicativo -> TermoMultiplicativo MUL Fator .)
+    SUB             reduce using rule 56 (TermoMultiplicativo -> TermoMultiplicativo MUL Fator .)
+    BIGGERTHEN      reduce using rule 56 (TermoMultiplicativo -> TermoMultiplicativo MUL Fator .)
+    SMALLERTHEN     reduce using rule 56 (TermoMultiplicativo -> TermoMultiplicativo MUL Fator .)
+    BIGOREQ         reduce using rule 56 (TermoMultiplicativo -> TermoMultiplicativo MUL Fator .)
+    SMALOREQ        reduce using rule 56 (TermoMultiplicativo -> TermoMultiplicativo MUL Fator .)
+    EQUAL           reduce using rule 56 (TermoMultiplicativo -> TermoMultiplicativo MUL Fator .)
+    NOTEQUAL        reduce using rule 56 (TermoMultiplicativo -> TermoMultiplicativo MUL Fator .)
+    AND             reduce using rule 56 (TermoMultiplicativo -> TermoMultiplicativo MUL Fator .)
+    THEN            reduce using rule 56 (TermoMultiplicativo -> TermoMultiplicativo MUL Fator .)
+    OR              reduce using rule 56 (TermoMultiplicativo -> TermoMultiplicativo MUL Fator .)
+    DO              reduce using rule 56 (TermoMultiplicativo -> TermoMultiplicativo MUL Fator .)
+    RBRACKET        reduce using rule 56 (TermoMultiplicativo -> TermoMultiplicativo MUL Fator .)
+    RPAREN          reduce using rule 56 (TermoMultiplicativo -> TermoMultiplicativo MUL Fator .)
+    COMMA           reduce using rule 56 (TermoMultiplicativo -> TermoMultiplicativo MUL Fator .)
+    SEMICOLON       reduce using rule 56 (TermoMultiplicativo -> TermoMultiplicativo MUL Fator .)
+    END             reduce using rule 56 (TermoMultiplicativo -> TermoMultiplicativo MUL Fator .)
+    ELSE            reduce using rule 56 (TermoMultiplicativo -> TermoMultiplicativo MUL Fator .)
+    TO              reduce using rule 56 (TermoMultiplicativo -> TermoMultiplicativo MUL Fator .)
+    DOWNTO          reduce using rule 56 (TermoMultiplicativo -> TermoMultiplicativo MUL Fator .)
+
+
+state 115
+
+    (57) TermoMultiplicativo -> TermoMultiplicativo DIV Fator .
+
+    MUL             reduce using rule 57 (TermoMultiplicativo -> TermoMultiplicativo DIV Fator .)
+    DIV             reduce using rule 57 (TermoMultiplicativo -> TermoMultiplicativo DIV Fator .)
+    MOD             reduce using rule 57 (TermoMultiplicativo -> TermoMultiplicativo DIV Fator .)
+    ADD             reduce using rule 57 (TermoMultiplicativo -> TermoMultiplicativo DIV Fator .)
+    SUB             reduce using rule 57 (TermoMultiplicativo -> TermoMultiplicativo DIV Fator .)
+    BIGGERTHEN      reduce using rule 57 (TermoMultiplicativo -> TermoMultiplicativo DIV Fator .)
+    SMALLERTHEN     reduce using rule 57 (TermoMultiplicativo -> TermoMultiplicativo DIV Fator .)
+    BIGOREQ         reduce using rule 57 (TermoMultiplicativo -> TermoMultiplicativo DIV Fator .)
+    SMALOREQ        reduce using rule 57 (TermoMultiplicativo -> TermoMultiplicativo DIV Fator .)
+    EQUAL           reduce using rule 57 (TermoMultiplicativo -> TermoMultiplicativo DIV Fator .)
+    NOTEQUAL        reduce using rule 57 (TermoMultiplicativo -> TermoMultiplicativo DIV Fator .)
+    AND             reduce using rule 57 (TermoMultiplicativo -> TermoMultiplicativo DIV Fator .)
+    THEN            reduce using rule 57 (TermoMultiplicativo -> TermoMultiplicativo DIV Fator .)
+    OR              reduce using rule 57 (TermoMultiplicativo -> TermoMultiplicativo DIV Fator .)
+    DO              reduce using rule 57 (TermoMultiplicativo -> TermoMultiplicativo DIV Fator .)
+    RBRACKET        reduce using rule 57 (TermoMultiplicativo -> TermoMultiplicativo DIV Fator .)
+    RPAREN          reduce using rule 57 (TermoMultiplicativo -> TermoMultiplicativo DIV Fator .)
+    COMMA           reduce using rule 57 (TermoMultiplicativo -> TermoMultiplicativo DIV Fator .)
+    SEMICOLON       reduce using rule 57 (TermoMultiplicativo -> TermoMultiplicativo DIV Fator .)
+    END             reduce using rule 57 (TermoMultiplicativo -> TermoMultiplicativo DIV Fator .)
+    ELSE            reduce using rule 57 (TermoMultiplicativo -> TermoMultiplicativo DIV Fator .)
+    TO              reduce using rule 57 (TermoMultiplicativo -> TermoMultiplicativo DIV Fator .)
+    DOWNTO          reduce using rule 57 (TermoMultiplicativo -> TermoMultiplicativo DIV Fator .)
+
+
+state 116
+
+    (58) TermoMultiplicativo -> TermoMultiplicativo MOD Fator .
+
+    MUL             reduce using rule 58 (TermoMultiplicativo -> TermoMultiplicativo MOD Fator .)
+    DIV             reduce using rule 58 (TermoMultiplicativo -> TermoMultiplicativo MOD Fator .)
+    MOD             reduce using rule 58 (TermoMultiplicativo -> TermoMultiplicativo MOD Fator .)
+    ADD             reduce using rule 58 (TermoMultiplicativo -> TermoMultiplicativo MOD Fator .)
+    SUB             reduce using rule 58 (TermoMultiplicativo -> TermoMultiplicativo MOD Fator .)
+    BIGGERTHEN      reduce using rule 58 (TermoMultiplicativo -> TermoMultiplicativo MOD Fator .)
+    SMALLERTHEN     reduce using rule 58 (TermoMultiplicativo -> TermoMultiplicativo MOD Fator .)
+    BIGOREQ         reduce using rule 58 (TermoMultiplicativo -> TermoMultiplicativo MOD Fator .)
+    SMALOREQ        reduce using rule 58 (TermoMultiplicativo -> TermoMultiplicativo MOD Fator .)
+    EQUAL           reduce using rule 58 (TermoMultiplicativo -> TermoMultiplicativo MOD Fator .)
+    NOTEQUAL        reduce using rule 58 (TermoMultiplicativo -> TermoMultiplicativo MOD Fator .)
+    AND             reduce using rule 58 (TermoMultiplicativo -> TermoMultiplicativo MOD Fator .)
+    THEN            reduce using rule 58 (TermoMultiplicativo -> TermoMultiplicativo MOD Fator .)
+    OR              reduce using rule 58 (TermoMultiplicativo -> TermoMultiplicativo MOD Fator .)
+    DO              reduce using rule 58 (TermoMultiplicativo -> TermoMultiplicativo MOD Fator .)
+    RBRACKET        reduce using rule 58 (TermoMultiplicativo -> TermoMultiplicativo MOD Fator .)
+    RPAREN          reduce using rule 58 (TermoMultiplicativo -> TermoMultiplicativo MOD Fator .)
+    COMMA           reduce using rule 58 (TermoMultiplicativo -> TermoMultiplicativo MOD Fator .)
+    SEMICOLON       reduce using rule 58 (TermoMultiplicativo -> TermoMultiplicativo MOD Fator .)
+    END             reduce using rule 58 (TermoMultiplicativo -> TermoMultiplicativo MOD Fator .)
+    ELSE            reduce using rule 58 (TermoMultiplicativo -> TermoMultiplicativo MOD Fator .)
+    TO              reduce using rule 58 (TermoMultiplicativo -> TermoMultiplicativo MOD Fator .)
+    DOWNTO          reduce using rule 58 (TermoMultiplicativo -> TermoMultiplicativo MOD Fator .)
+
+
+state 117
+
+    (66) Fator -> ID LBRACKET Expr . RBRACKET
+    (38) Expr -> Expr . OR TermoAnd
+
+    RBRACKET        shift and go to state 133
+    OR              shift and go to state 73
+
+
+state 118
+
+    (67) Fator -> ID DOT ID .
+
+    MUL             reduce using rule 67 (Fator -> ID DOT ID .)
+    DIV             reduce using rule 67 (Fator -> ID DOT ID .)
+    MOD             reduce using rule 67 (Fator -> ID DOT ID .)
+    ADD             reduce using rule 67 (Fator -> ID DOT ID .)
+    SUB             reduce using rule 67 (Fator -> ID DOT ID .)
+    BIGGERTHEN      reduce using rule 67 (Fator -> ID DOT ID .)
+    SMALLERTHEN     reduce using rule 67 (Fator -> ID DOT ID .)
+    BIGOREQ         reduce using rule 67 (Fator -> ID DOT ID .)
+    SMALOREQ        reduce using rule 67 (Fator -> ID DOT ID .)
+    EQUAL           reduce using rule 67 (Fator -> ID DOT ID .)
+    NOTEQUAL        reduce using rule 67 (Fator -> ID DOT ID .)
+    AND             reduce using rule 67 (Fator -> ID DOT ID .)
+    THEN            reduce using rule 67 (Fator -> ID DOT ID .)
+    OR              reduce using rule 67 (Fator -> ID DOT ID .)
+    DO              reduce using rule 67 (Fator -> ID DOT ID .)
+    RBRACKET        reduce using rule 67 (Fator -> ID DOT ID .)
+    RPAREN          reduce using rule 67 (Fator -> ID DOT ID .)
+    COMMA           reduce using rule 67 (Fator -> ID DOT ID .)
+    SEMICOLON       reduce using rule 67 (Fator -> ID DOT ID .)
+    END             reduce using rule 67 (Fator -> ID DOT ID .)
+    ELSE            reduce using rule 67 (Fator -> ID DOT ID .)
+    TO              reduce using rule 67 (Fator -> ID DOT ID .)
+    DOWNTO          reduce using rule 67 (Fator -> ID DOT ID .)
+
+
+state 119
+
+    (68) Fator -> ID LPAREN ID . RPAREN
+
+    RPAREN          shift and go to state 134
+
+
+state 120
+
+    (65) Fator -> LPAREN Expr RPAREN .
+
+    MUL             reduce using rule 65 (Fator -> LPAREN Expr RPAREN .)
+    DIV             reduce using rule 65 (Fator -> LPAREN Expr RPAREN .)
+    MOD             reduce using rule 65 (Fator -> LPAREN Expr RPAREN .)
+    ADD             reduce using rule 65 (Fator -> LPAREN Expr RPAREN .)
+    SUB             reduce using rule 65 (Fator -> LPAREN Expr RPAREN .)
+    BIGGERTHEN      reduce using rule 65 (Fator -> LPAREN Expr RPAREN .)
+    SMALLERTHEN     reduce using rule 65 (Fator -> LPAREN Expr RPAREN .)
+    BIGOREQ         reduce using rule 65 (Fator -> LPAREN Expr RPAREN .)
+    SMALOREQ        reduce using rule 65 (Fator -> LPAREN Expr RPAREN .)
+    EQUAL           reduce using rule 65 (Fator -> LPAREN Expr RPAREN .)
+    NOTEQUAL        reduce using rule 65 (Fator -> LPAREN Expr RPAREN .)
+    AND             reduce using rule 65 (Fator -> LPAREN Expr RPAREN .)
+    THEN            reduce using rule 65 (Fator -> LPAREN Expr RPAREN .)
+    OR              reduce using rule 65 (Fator -> LPAREN Expr RPAREN .)
+    DO              reduce using rule 65 (Fator -> LPAREN Expr RPAREN .)
+    RBRACKET        reduce using rule 65 (Fator -> LPAREN Expr RPAREN .)
+    RPAREN          reduce using rule 65 (Fator -> LPAREN Expr RPAREN .)
+    COMMA           reduce using rule 65 (Fator -> LPAREN Expr RPAREN .)
+    SEMICOLON       reduce using rule 65 (Fator -> LPAREN Expr RPAREN .)
+    END             reduce using rule 65 (Fator -> LPAREN Expr RPAREN .)
+    ELSE            reduce using rule 65 (Fator -> LPAREN Expr RPAREN .)
+    TO              reduce using rule 65 (Fator -> LPAREN Expr RPAREN .)
+    DOWNTO          reduce using rule 65 (Fator -> LPAREN Expr RPAREN .)
+
+
+state 121
+
+    (28) Instrucao -> WRITE LPAREN ListaExpr RPAREN .
+
+    SEMICOLON       reduce using rule 28 (Instrucao -> WRITE LPAREN ListaExpr RPAREN .)
+    END             reduce using rule 28 (Instrucao -> WRITE LPAREN ListaExpr RPAREN .)
+    ELSE            reduce using rule 28 (Instrucao -> WRITE LPAREN ListaExpr RPAREN .)
+
+
+state 122
+
+    (40) ListaExpr -> Expr ListaExprTail .
+
+    RPAREN          reduce using rule 40 (ListaExpr -> Expr ListaExprTail .)
+
+
+state 123
+
+    (41) ListaExprTail -> COMMA . Expr ListaExprTail
+    (38) Expr -> . Expr OR TermoAnd
+    (39) Expr -> . TermoAnd
+    (43) TermoAnd -> . TermoAnd AND TermoIgualdade
+    (44) TermoAnd -> . TermoIgualdade
+    (45) TermoIgualdade -> . TermoIgualdade EQUAL TermoRelacional
+    (46) TermoIgualdade -> . TermoIgualdade NOTEQUAL TermoRelacional
+    (47) TermoIgualdade -> . TermoRelacional
+    (48) TermoRelacional -> . TermoRelacional BIGGERTHEN TermoAditivo
+    (49) TermoRelacional -> . TermoRelacional SMALLERTHEN TermoAditivo
+    (50) TermoRelacional -> . TermoRelacional BIGOREQ TermoAditivo
+    (51) TermoRelacional -> . TermoRelacional SMALOREQ TermoAditivo
+    (52) TermoRelacional -> . TermoAditivo
+    (53) TermoAditivo -> . TermoAditivo ADD TermoMultiplicativo
+    (54) TermoAditivo -> . TermoAditivo SUB TermoMultiplicativo
+    (55) TermoAditivo -> . TermoMultiplicativo
+    (56) TermoMultiplicativo -> . TermoMultiplicativo MUL Fator
+    (57) TermoMultiplicativo -> . TermoMultiplicativo DIV Fator
+    (58) TermoMultiplicativo -> . TermoMultiplicativo MOD Fator
+    (59) TermoMultiplicativo -> . Fator
+    (60) Fator -> . ID
+    (61) Fator -> . NUMBER
+    (62) Fator -> . STRING
+    (63) Fator -> . TRUE
+    (64) Fator -> . FALSE
+    (65) Fator -> . LPAREN Expr RPAREN
+    (66) Fator -> . ID LBRACKET Expr RBRACKET
+    (67) Fator -> . ID DOT ID
+    (68) Fator -> . ID LPAREN ID RPAREN
+    (69) Fator -> . CHAR
+
+    ID              shift and go to state 47
+    NUMBER          shift and go to state 48
+    STRING          shift and go to state 49
+    TRUE            shift and go to state 50
+    FALSE           shift and go to state 51
+    LPAREN          shift and go to state 52
+    CHAR            shift and go to state 53
+
+    Expr                           shift and go to state 135
+    TermoAnd                       shift and go to state 41
+    TermoIgualdade                 shift and go to state 42
+    TermoRelacional                shift and go to state 43
+    TermoAditivo                   shift and go to state 44
+    TermoMultiplicativo            shift and go to state 45
+    Fator                          shift and go to state 46
+
+state 124
+
+    (42) ListaExprTail -> empty .
+
+    RPAREN          reduce using rule 42 (ListaExprTail -> empty .)
+
+
+state 125
+
+    (29) Instrucao -> WRITELN LPAREN ListaExpr RPAREN .
+
+    SEMICOLON       reduce using rule 29 (Instrucao -> WRITELN LPAREN ListaExpr RPAREN .)
+    END             reduce using rule 29 (Instrucao -> WRITELN LPAREN ListaExpr RPAREN .)
+    ELSE            reduce using rule 29 (Instrucao -> WRITELN LPAREN ListaExpr RPAREN .)
+
+
+state 126
+
+    (31) Instrucao -> READ LPAREN ListaVariaveis RPAREN .
+
+    SEMICOLON       reduce using rule 31 (Instrucao -> READ LPAREN ListaVariaveis RPAREN .)
+    END             reduce using rule 31 (Instrucao -> READ LPAREN ListaVariaveis RPAREN .)
+    ELSE            reduce using rule 31 (Instrucao -> READ LPAREN ListaVariaveis RPAREN .)
+
+
+state 127
+
+    (32) Instrucao -> READLN LPAREN ListaVariaveis RPAREN .
+
+    SEMICOLON       reduce using rule 32 (Instrucao -> READLN LPAREN ListaVariaveis RPAREN .)
+    END             reduce using rule 32 (Instrucao -> READLN LPAREN ListaVariaveis RPAREN .)
+    ELSE            reduce using rule 32 (Instrucao -> READLN LPAREN ListaVariaveis RPAREN .)
+
+
+state 128
+
+    (33) Loop -> WHILE Expr DO Instrucao .
+
+    SEMICOLON       reduce using rule 33 (Loop -> WHILE Expr DO Instrucao .)
+    END             reduce using rule 33 (Loop -> WHILE Expr DO Instrucao .)
+    ELSE            reduce using rule 33 (Loop -> WHILE Expr DO Instrucao .)
+
+
+state 129
+
+    (34) Loop -> FOR ID ASSIGN Expr . TO Expr DO Instrucao
+    (35) Loop -> FOR ID ASSIGN Expr . DOWNTO Expr DO Instrucao
+    (38) Expr -> Expr . OR TermoAnd
+
+    TO              shift and go to state 136
+    DOWNTO          shift and go to state 137
+    OR              shift and go to state 73
+
+
+state 130
+
+    (37) Atr -> ID LBRACKET Expr RBRACKET . ASSIGN Expr
+
+    ASSIGN          shift and go to state 138
+
+
+state 131
+
+    (18) Tipo -> ARRAY LBRACKET NUMBER . DOTDOT NUMBER RBRACKET OF Tipo
+
+    DOTDOT          shift and go to state 139
+
+
+state 132
+
+    (24) Instrucao -> IF Expr THEN Instrucao ELSE . Instrucao
+    (23) Instrucao -> . IF Expr THEN Instrucao
+    (24) Instrucao -> . IF Expr THEN Instrucao ELSE Instrucao
+    (25) Instrucao -> . Loop
+    (26) Instrucao -> . Atr
+    (27) Instrucao -> . Exec
+    (28) Instrucao -> . WRITE LPAREN ListaExpr RPAREN
+    (29) Instrucao -> . WRITELN LPAREN ListaExpr RPAREN
+    (30) Instrucao -> . WRITELN
+    (31) Instrucao -> . READ LPAREN ListaVariaveis RPAREN
+    (32) Instrucao -> . READLN LPAREN ListaVariaveis RPAREN
+    (33) Loop -> . WHILE Expr DO Instrucao
+    (34) Loop -> . FOR ID ASSIGN Expr TO Expr DO Instrucao
+    (35) Loop -> . FOR ID ASSIGN Expr DOWNTO Expr DO Instrucao
+    (36) Atr -> . ID ASSIGN Expr
+    (37) Atr -> . ID LBRACKET Expr RBRACKET ASSIGN Expr
+    (19) Exec -> . BEGIN ListaInstrucao END
+
+    IF              shift and go to state 21
+    WRITE           shift and go to state 25
+    WRITELN         shift and go to state 26
+    READ            shift and go to state 27
+    READLN          shift and go to state 28
+    WHILE           shift and go to state 29
+    FOR             shift and go to state 30
+    ID              shift and go to state 31
+    BEGIN           shift and go to state 11
+
+    Instrucao                      shift and go to state 140
+    Loop                           shift and go to state 22
+    Atr                            shift and go to state 23
+    Exec                           shift and go to state 24
+
+state 133
+
+    (66) Fator -> ID LBRACKET Expr RBRACKET .
+
+    MUL             reduce using rule 66 (Fator -> ID LBRACKET Expr RBRACKET .)
+    DIV             reduce using rule 66 (Fator -> ID LBRACKET Expr RBRACKET .)
+    MOD             reduce using rule 66 (Fator -> ID LBRACKET Expr RBRACKET .)
+    ADD             reduce using rule 66 (Fator -> ID LBRACKET Expr RBRACKET .)
+    SUB             reduce using rule 66 (Fator -> ID LBRACKET Expr RBRACKET .)
+    BIGGERTHEN      reduce using rule 66 (Fator -> ID LBRACKET Expr RBRACKET .)
+    SMALLERTHEN     reduce using rule 66 (Fator -> ID LBRACKET Expr RBRACKET .)
+    BIGOREQ         reduce using rule 66 (Fator -> ID LBRACKET Expr RBRACKET .)
+    SMALOREQ        reduce using rule 66 (Fator -> ID LBRACKET Expr RBRACKET .)
+    EQUAL           reduce using rule 66 (Fator -> ID LBRACKET Expr RBRACKET .)
+    NOTEQUAL        reduce using rule 66 (Fator -> ID LBRACKET Expr RBRACKET .)
+    AND             reduce using rule 66 (Fator -> ID LBRACKET Expr RBRACKET .)
+    THEN            reduce using rule 66 (Fator -> ID LBRACKET Expr RBRACKET .)
+    OR              reduce using rule 66 (Fator -> ID LBRACKET Expr RBRACKET .)
+    DO              reduce using rule 66 (Fator -> ID LBRACKET Expr RBRACKET .)
+    RBRACKET        reduce using rule 66 (Fator -> ID LBRACKET Expr RBRACKET .)
+    RPAREN          reduce using rule 66 (Fator -> ID LBRACKET Expr RBRACKET .)
+    COMMA           reduce using rule 66 (Fator -> ID LBRACKET Expr RBRACKET .)
+    SEMICOLON       reduce using rule 66 (Fator -> ID LBRACKET Expr RBRACKET .)
+    END             reduce using rule 66 (Fator -> ID LBRACKET Expr RBRACKET .)
+    ELSE            reduce using rule 66 (Fator -> ID LBRACKET Expr RBRACKET .)
+    TO              reduce using rule 66 (Fator -> ID LBRACKET Expr RBRACKET .)
+    DOWNTO          reduce using rule 66 (Fator -> ID LBRACKET Expr RBRACKET .)
+
+
+state 134
+
+    (68) Fator -> ID LPAREN ID RPAREN .
+
+    MUL             reduce using rule 68 (Fator -> ID LPAREN ID RPAREN .)
+    DIV             reduce using rule 68 (Fator -> ID LPAREN ID RPAREN .)
+    MOD             reduce using rule 68 (Fator -> ID LPAREN ID RPAREN .)
+    ADD             reduce using rule 68 (Fator -> ID LPAREN ID RPAREN .)
+    SUB             reduce using rule 68 (Fator -> ID LPAREN ID RPAREN .)
+    BIGGERTHEN      reduce using rule 68 (Fator -> ID LPAREN ID RPAREN .)
+    SMALLERTHEN     reduce using rule 68 (Fator -> ID LPAREN ID RPAREN .)
+    BIGOREQ         reduce using rule 68 (Fator -> ID LPAREN ID RPAREN .)
+    SMALOREQ        reduce using rule 68 (Fator -> ID LPAREN ID RPAREN .)
+    EQUAL           reduce using rule 68 (Fator -> ID LPAREN ID RPAREN .)
+    NOTEQUAL        reduce using rule 68 (Fator -> ID LPAREN ID RPAREN .)
+    AND             reduce using rule 68 (Fator -> ID LPAREN ID RPAREN .)
+    THEN            reduce using rule 68 (Fator -> ID LPAREN ID RPAREN .)
+    OR              reduce using rule 68 (Fator -> ID LPAREN ID RPAREN .)
+    DO              reduce using rule 68 (Fator -> ID LPAREN ID RPAREN .)
+    RBRACKET        reduce using rule 68 (Fator -> ID LPAREN ID RPAREN .)
+    RPAREN          reduce using rule 68 (Fator -> ID LPAREN ID RPAREN .)
+    COMMA           reduce using rule 68 (Fator -> ID LPAREN ID RPAREN .)
+    SEMICOLON       reduce using rule 68 (Fator -> ID LPAREN ID RPAREN .)
+    END             reduce using rule 68 (Fator -> ID LPAREN ID RPAREN .)
+    ELSE            reduce using rule 68 (Fator -> ID LPAREN ID RPAREN .)
+    TO              reduce using rule 68 (Fator -> ID LPAREN ID RPAREN .)
+    DOWNTO          reduce using rule 68 (Fator -> ID LPAREN ID RPAREN .)
+
+
+state 135
+
+    (41) ListaExprTail -> COMMA Expr . ListaExprTail
+    (38) Expr -> Expr . OR TermoAnd
+    (41) ListaExprTail -> . COMMA Expr ListaExprTail
+    (42) ListaExprTail -> . empty
+    (74) empty -> .
+
+    OR              shift and go to state 73
+    COMMA           shift and go to state 123
+    RPAREN          reduce using rule 74 (empty -> .)
+
+    ListaExprTail                  shift and go to state 141
+    empty                          shift and go to state 124
+
+state 136
+
+    (34) Loop -> FOR ID ASSIGN Expr TO . Expr DO Instrucao
+    (38) Expr -> . Expr OR TermoAnd
+    (39) Expr -> . TermoAnd
+    (43) TermoAnd -> . TermoAnd AND TermoIgualdade
+    (44) TermoAnd -> . TermoIgualdade
+    (45) TermoIgualdade -> . TermoIgualdade EQUAL TermoRelacional
+    (46) TermoIgualdade -> . TermoIgualdade NOTEQUAL TermoRelacional
+    (47) TermoIgualdade -> . TermoRelacional
+    (48) TermoRelacional -> . TermoRelacional BIGGERTHEN TermoAditivo
+    (49) TermoRelacional -> . TermoRelacional SMALLERTHEN TermoAditivo
+    (50) TermoRelacional -> . TermoRelacional BIGOREQ TermoAditivo
+    (51) TermoRelacional -> . TermoRelacional SMALOREQ TermoAditivo
+    (52) TermoRelacional -> . TermoAditivo
+    (53) TermoAditivo -> . TermoAditivo ADD TermoMultiplicativo
+    (54) TermoAditivo -> . TermoAditivo SUB TermoMultiplicativo
+    (55) TermoAditivo -> . TermoMultiplicativo
+    (56) TermoMultiplicativo -> . TermoMultiplicativo MUL Fator
+    (57) TermoMultiplicativo -> . TermoMultiplicativo DIV Fator
+    (58) TermoMultiplicativo -> . TermoMultiplicativo MOD Fator
+    (59) TermoMultiplicativo -> . Fator
+    (60) Fator -> . ID
+    (61) Fator -> . NUMBER
+    (62) Fator -> . STRING
+    (63) Fator -> . TRUE
+    (64) Fator -> . FALSE
+    (65) Fator -> . LPAREN Expr RPAREN
+    (66) Fator -> . ID LBRACKET Expr RBRACKET
+    (67) Fator -> . ID DOT ID
+    (68) Fator -> . ID LPAREN ID RPAREN
+    (69) Fator -> . CHAR
+
+    ID              shift and go to state 47
+    NUMBER          shift and go to state 48
+    STRING          shift and go to state 49
+    TRUE            shift and go to state 50
+    FALSE           shift and go to state 51
+    LPAREN          shift and go to state 52
+    CHAR            shift and go to state 53
+
+    Expr                           shift and go to state 142
+    TermoAnd                       shift and go to state 41
+    TermoIgualdade                 shift and go to state 42
+    TermoRelacional                shift and go to state 43
+    TermoAditivo                   shift and go to state 44
+    TermoMultiplicativo            shift and go to state 45
+    Fator                          shift and go to state 46
+
+state 137
+
+    (35) Loop -> FOR ID ASSIGN Expr DOWNTO . Expr DO Instrucao
+    (38) Expr -> . Expr OR TermoAnd
+    (39) Expr -> . TermoAnd
+    (43) TermoAnd -> . TermoAnd AND TermoIgualdade
+    (44) TermoAnd -> . TermoIgualdade
+    (45) TermoIgualdade -> . TermoIgualdade EQUAL TermoRelacional
+    (46) TermoIgualdade -> . TermoIgualdade NOTEQUAL TermoRelacional
+    (47) TermoIgualdade -> . TermoRelacional
+    (48) TermoRelacional -> . TermoRelacional BIGGERTHEN TermoAditivo
+    (49) TermoRelacional -> . TermoRelacional SMALLERTHEN TermoAditivo
+    (50) TermoRelacional -> . TermoRelacional BIGOREQ TermoAditivo
+    (51) TermoRelacional -> . TermoRelacional SMALOREQ TermoAditivo
+    (52) TermoRelacional -> . TermoAditivo
+    (53) TermoAditivo -> . TermoAditivo ADD TermoMultiplicativo
+    (54) TermoAditivo -> . TermoAditivo SUB TermoMultiplicativo
+    (55) TermoAditivo -> . TermoMultiplicativo
+    (56) TermoMultiplicativo -> . TermoMultiplicativo MUL Fator
+    (57) TermoMultiplicativo -> . TermoMultiplicativo DIV Fator
+    (58) TermoMultiplicativo -> . TermoMultiplicativo MOD Fator
+    (59) TermoMultiplicativo -> . Fator
+    (60) Fator -> . ID
+    (61) Fator -> . NUMBER
+    (62) Fator -> . STRING
+    (63) Fator -> . TRUE
+    (64) Fator -> . FALSE
+    (65) Fator -> . LPAREN Expr RPAREN
+    (66) Fator -> . ID LBRACKET Expr RBRACKET
+    (67) Fator -> . ID DOT ID
+    (68) Fator -> . ID LPAREN ID RPAREN
+    (69) Fator -> . CHAR
+
+    ID              shift and go to state 47
+    NUMBER          shift and go to state 48
+    STRING          shift and go to state 49
+    TRUE            shift and go to state 50
+    FALSE           shift and go to state 51
+    LPAREN          shift and go to state 52
+    CHAR            shift and go to state 53
+
+    Expr                           shift and go to state 143
+    TermoAnd                       shift and go to state 41
+    TermoIgualdade                 shift and go to state 42
+    TermoRelacional                shift and go to state 43
+    TermoAditivo                   shift and go to state 44
+    TermoMultiplicativo            shift and go to state 45
+    Fator                          shift and go to state 46
+
+state 138
+
+    (37) Atr -> ID LBRACKET Expr RBRACKET ASSIGN . Expr
+    (38) Expr -> . Expr OR TermoAnd
+    (39) Expr -> . TermoAnd
+    (43) TermoAnd -> . TermoAnd AND TermoIgualdade
+    (44) TermoAnd -> . TermoIgualdade
+    (45) TermoIgualdade -> . TermoIgualdade EQUAL TermoRelacional
+    (46) TermoIgualdade -> . TermoIgualdade NOTEQUAL TermoRelacional
+    (47) TermoIgualdade -> . TermoRelacional
+    (48) TermoRelacional -> . TermoRelacional BIGGERTHEN TermoAditivo
+    (49) TermoRelacional -> . TermoRelacional SMALLERTHEN TermoAditivo
+    (50) TermoRelacional -> . TermoRelacional BIGOREQ TermoAditivo
+    (51) TermoRelacional -> . TermoRelacional SMALOREQ TermoAditivo
+    (52) TermoRelacional -> . TermoAditivo
+    (53) TermoAditivo -> . TermoAditivo ADD TermoMultiplicativo
+    (54) TermoAditivo -> . TermoAditivo SUB TermoMultiplicativo
+    (55) TermoAditivo -> . TermoMultiplicativo
+    (56) TermoMultiplicativo -> . TermoMultiplicativo MUL Fator
+    (57) TermoMultiplicativo -> . TermoMultiplicativo DIV Fator
+    (58) TermoMultiplicativo -> . TermoMultiplicativo MOD Fator
+    (59) TermoMultiplicativo -> . Fator
+    (60) Fator -> . ID
+    (61) Fator -> . NUMBER
+    (62) Fator -> . STRING
+    (63) Fator -> . TRUE
+    (64) Fator -> . FALSE
+    (65) Fator -> . LPAREN Expr RPAREN
+    (66) Fator -> . ID LBRACKET Expr RBRACKET
+    (67) Fator -> . ID DOT ID
+    (68) Fator -> . ID LPAREN ID RPAREN
+    (69) Fator -> . CHAR
+
+    ID              shift and go to state 47
+    NUMBER          shift and go to state 48
+    STRING          shift and go to state 49
+    TRUE            shift and go to state 50
+    FALSE           shift and go to state 51
+    LPAREN          shift and go to state 52
+    CHAR            shift and go to state 53
+
+    Expr                           shift and go to state 144
+    TermoAnd                       shift and go to state 41
+    TermoIgualdade                 shift and go to state 42
+    TermoRelacional                shift and go to state 43
+    TermoAditivo                   shift and go to state 44
+    TermoMultiplicativo            shift and go to state 45
+    Fator                          shift and go to state 46
+
+state 139
+
+    (18) Tipo -> ARRAY LBRACKET NUMBER DOTDOT . NUMBER RBRACKET OF Tipo
+
+    NUMBER          shift and go to state 145
+
+
+state 140
+
+    (24) Instrucao -> IF Expr THEN Instrucao ELSE Instrucao .
+
+    SEMICOLON       reduce using rule 24 (Instrucao -> IF Expr THEN Instrucao ELSE Instrucao .)
+    END             reduce using rule 24 (Instrucao -> IF Expr THEN Instrucao ELSE Instrucao .)
+    ELSE            reduce using rule 24 (Instrucao -> IF Expr THEN Instrucao ELSE Instrucao .)
+
+
+state 141
+
+    (41) ListaExprTail -> COMMA Expr ListaExprTail .
+
+    RPAREN          reduce using rule 41 (ListaExprTail -> COMMA Expr ListaExprTail .)
+
+
+state 142
+
+    (34) Loop -> FOR ID ASSIGN Expr TO Expr . DO Instrucao
+    (38) Expr -> Expr . OR TermoAnd
+
+    DO              shift and go to state 146
+    OR              shift and go to state 73
+
+
+state 143
+
+    (35) Loop -> FOR ID ASSIGN Expr DOWNTO Expr . DO Instrucao
+    (38) Expr -> Expr . OR TermoAnd
+
+    DO              shift and go to state 147
+    OR              shift and go to state 73
+
+
+state 144
+
+    (37) Atr -> ID LBRACKET Expr RBRACKET ASSIGN Expr .
+    (38) Expr -> Expr . OR TermoAnd
+
+    SEMICOLON       reduce using rule 37 (Atr -> ID LBRACKET Expr RBRACKET ASSIGN Expr .)
+    END             reduce using rule 37 (Atr -> ID LBRACKET Expr RBRACKET ASSIGN Expr .)
+    ELSE            reduce using rule 37 (Atr -> ID LBRACKET Expr RBRACKET ASSIGN Expr .)
+    OR              shift and go to state 73
+
+
+state 145
+
+    (18) Tipo -> ARRAY LBRACKET NUMBER DOTDOT NUMBER . RBRACKET OF Tipo
+
+    RBRACKET        shift and go to state 148
+
+
+state 146
+
+    (34) Loop -> FOR ID ASSIGN Expr TO Expr DO . Instrucao
+    (23) Instrucao -> . IF Expr THEN Instrucao
+    (24) Instrucao -> . IF Expr THEN Instrucao ELSE Instrucao
+    (25) Instrucao -> . Loop
+    (26) Instrucao -> . Atr
+    (27) Instrucao -> . Exec
+    (28) Instrucao -> . WRITE LPAREN ListaExpr RPAREN
+    (29) Instrucao -> . WRITELN LPAREN ListaExpr RPAREN
+    (30) Instrucao -> . WRITELN
+    (31) Instrucao -> . READ LPAREN ListaVariaveis RPAREN
+    (32) Instrucao -> . READLN LPAREN ListaVariaveis RPAREN
+    (33) Loop -> . WHILE Expr DO Instrucao
+    (34) Loop -> . FOR ID ASSIGN Expr TO Expr DO Instrucao
+    (35) Loop -> . FOR ID ASSIGN Expr DOWNTO Expr DO Instrucao
+    (36) Atr -> . ID ASSIGN Expr
+    (37) Atr -> . ID LBRACKET Expr RBRACKET ASSIGN Expr
+    (19) Exec -> . BEGIN ListaInstrucao END
+
+    IF              shift and go to state 21
+    WRITE           shift and go to state 25
+    WRITELN         shift and go to state 26
+    READ            shift and go to state 27
+    READLN          shift and go to state 28
+    WHILE           shift and go to state 29
+    FOR             shift and go to state 30
+    ID              shift and go to state 31
+    BEGIN           shift and go to state 11
+
+    Instrucao                      shift and go to state 149
+    Loop                           shift and go to state 22
+    Atr                            shift and go to state 23
+    Exec                           shift and go to state 24
+
+state 147
+
+    (35) Loop -> FOR ID ASSIGN Expr DOWNTO Expr DO . Instrucao
+    (23) Instrucao -> . IF Expr THEN Instrucao
+    (24) Instrucao -> . IF Expr THEN Instrucao ELSE Instrucao
+    (25) Instrucao -> . Loop
+    (26) Instrucao -> . Atr
+    (27) Instrucao -> . Exec
+    (28) Instrucao -> . WRITE LPAREN ListaExpr RPAREN
+    (29) Instrucao -> . WRITELN LPAREN ListaExpr RPAREN
+    (30) Instrucao -> . WRITELN
+    (31) Instrucao -> . READ LPAREN ListaVariaveis RPAREN
+    (32) Instrucao -> . READLN LPAREN ListaVariaveis RPAREN
+    (33) Loop -> . WHILE Expr DO Instrucao
+    (34) Loop -> . FOR ID ASSIGN Expr TO Expr DO Instrucao
+    (35) Loop -> . FOR ID ASSIGN Expr DOWNTO Expr DO Instrucao
+    (36) Atr -> . ID ASSIGN Expr
+    (37) Atr -> . ID LBRACKET Expr RBRACKET ASSIGN Expr
+    (19) Exec -> . BEGIN ListaInstrucao END
+
+    IF              shift and go to state 21
+    WRITE           shift and go to state 25
+    WRITELN         shift and go to state 26
+    READ            shift and go to state 27
+    READLN          shift and go to state 28
+    WHILE           shift and go to state 29
+    FOR             shift and go to state 30
+    ID              shift and go to state 31
+    BEGIN           shift and go to state 11
+
+    Instrucao                      shift and go to state 150
+    Loop                           shift and go to state 22
+    Atr                            shift and go to state 23
+    Exec                           shift and go to state 24
+
+state 148
+
+    (18) Tipo -> ARRAY LBRACKET NUMBER DOTDOT NUMBER RBRACKET . OF Tipo
+
+    OF              shift and go to state 151
+
+
+state 149
+
+    (34) Loop -> FOR ID ASSIGN Expr TO Expr DO Instrucao .
+
+    SEMICOLON       reduce using rule 34 (Loop -> FOR ID ASSIGN Expr TO Expr DO Instrucao .)
+    END             reduce using rule 34 (Loop -> FOR ID ASSIGN Expr TO Expr DO Instrucao .)
+    ELSE            reduce using rule 34 (Loop -> FOR ID ASSIGN Expr TO Expr DO Instrucao .)
+
+
+state 150
+
+    (35) Loop -> FOR ID ASSIGN Expr DOWNTO Expr DO Instrucao .
+
+    SEMICOLON       reduce using rule 35 (Loop -> FOR ID ASSIGN Expr DOWNTO Expr DO Instrucao .)
+    END             reduce using rule 35 (Loop -> FOR ID ASSIGN Expr DOWNTO Expr DO Instrucao .)
+    ELSE            reduce using rule 35 (Loop -> FOR ID ASSIGN Expr DOWNTO Expr DO Instrucao .)
+
+
+state 151
+
+    (18) Tipo -> ARRAY LBRACKET NUMBER DOTDOT NUMBER RBRACKET OF . Tipo
+    (13) Tipo -> . INTEGER
+    (14) Tipo -> . REAL
+    (15) Tipo -> . CHAR_TYPE
+    (16) Tipo -> . BOOLEAN
+    (17) Tipo -> . STRING_TYPE
+    (18) Tipo -> . ARRAY LBRACKET NUMBER DOTDOT NUMBER RBRACKET OF Tipo
+
+    INTEGER         shift and go to state 63
+    REAL            shift and go to state 64
+    CHAR_TYPE       shift and go to state 65
+    BOOLEAN         shift and go to state 66
+    STRING_TYPE     shift and go to state 67
+    ARRAY           shift and go to state 68
+
+    Tipo                           shift and go to state 152
+
+state 152
+
+    (18) Tipo -> ARRAY LBRACKET NUMBER DOTDOT NUMBER RBRACKET OF Tipo .
+
+    SEMICOLON       reduce using rule 18 (Tipo -> ARRAY LBRACKET NUMBER DOTDOT NUMBER RBRACKET OF Tipo .)
+
+WARNING: 
+WARNING: Conflicts:
+WARNING: 
+WARNING: shift/reduce conflict for ELSE in state 103 resolved as shift

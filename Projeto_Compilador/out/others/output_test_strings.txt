@@ -1,0 +1,183 @@
+pushn 5
+start
+pushs "=== Teste de Strings ==="
+writes
+writeln
+pushs "Teste 1 - Atribuição básica:"
+writes
+writeln
+pushs "Pascal"
+storeg 0
+pushs "Linguagem de programacao"
+storeg 1
+pushs "Nome: "
+writes
+pushg 0
+writes
+writeln
+pushs "Frase: "
+writes
+pushg 1
+writes
+writeln
+writeln
+pushs "Teste 3 - Comprimento:"
+writes
+writeln
+pushg 0
+strlen
+storeg 3
+pushs "Tamanho do nome: "
+writes
+pushg 3
+writei
+writeln
+writeln
+pushs "Teste 4 - Percorrer string:"
+writes
+writeln
+pushs "Nome letra por letra: "
+writes
+pushi 1
+storeg 2
+L2:
+pushg 0
+strlen
+pushg 2
+supeq
+jz L3
+pushg 0
+pushg 2
+pushi 1
+sub
+charat
+writechr
+pushg 2
+pushg 0
+strlen
+inf
+jz L1
+pushi 45
+writechr
+L1:
+pushg 2
+pushi 1
+add
+storeg 2
+jump L2
+L3:
+writeln
+writeln
+pushs "Teste 5 - Comparação de caracteres:"
+writes
+writeln
+pushg 0
+pushi 1
+pushi 1
+sub
+charat
+storeg 4
+pushg 4
+pushi 80
+equal
+jz L4
+pushs "A primeira letra é P!"
+writes
+writeln
+jump L5
+L4:
+pushs "A primeira letra não é P"
+writes
+writeln
+L5:
+pushg 0
+pushi 2
+pushi 1
+sub
+charat
+pushi 97
+equal
+jz L6
+pushs "A segunda letra é a!"
+writes
+writeln
+jump L7
+L6:
+pushs "A segunda letra não é a"
+writes
+writeln
+L7:
+writeln
+pushs "Teste 6 - Busca de caractere:"
+writes
+writeln
+pushi 1
+storeg 2
+L9:
+pushg 1
+strlen
+pushg 2
+supeq
+jz L10
+pushg 1
+pushg 2
+pushi 1
+sub
+charat
+pushi 97
+equal
+jz L8
+pushs "Encontrado 'a' na posição "
+writes
+pushg 2
+writei
+writeln
+L8:
+pushg 2
+pushi 1
+add
+storeg 2
+jump L9
+L10:
+writeln
+pushs "Teste 7 - Contagem de caracteres:"
+writes
+writeln
+pushi 0
+storeg 3
+pushi 1
+storeg 2
+L12:
+pushg 1
+strlen
+pushg 2
+supeq
+jz L13
+pushg 1
+pushg 2
+pushi 1
+sub
+charat
+pushi 97
+equal
+jz L11
+pushg 3
+pushi 1
+add
+storeg 3
+L11:
+pushg 2
+pushi 1
+add
+storeg 2
+jump L12
+L13:
+pushs "Número de 'a' na frase: "
+writes
+pushg 3
+writei
+writeln
+pushs "=== Fim dos testes de strings ==="
+writes
+writeln
+stop
